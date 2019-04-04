@@ -1,0 +1,194 @@
+{
+  "name": "Dropbox",
+  "sandbox": true,
+  "defaultActivityIcon": "/assets/images/Dropbox_Activity.svg",
+  "endpoint": {
+    "displayName": "Dropbox Endpoint",
+    "icon": "/assets/images/Dropbox_Folder.svg",
+    "properties": [
+      {
+        "name": "app-key",
+        "displayName": "Dropbox App Key",
+        "type": "string",
+        "widgetHint": "string",
+        "validators": [
+          {
+            "name": "required"
+          }
+        ]
+      },
+      {
+        "name": "access-token",
+        "displayName": "Dropbox Access Token",
+        "type": "string",
+        "widgetHint": "password",
+        "validators": [
+          {
+            "name": "required"
+          }
+        ]
+      }
+    ]
+  },
+  "activities": {
+    "fetch": {
+      "displayName": "Fetch File",
+      "properties": [
+        {
+          "name": "page1",
+          "displayName": "Configuration",
+          "type": "pagination",
+          "children": [
+            {
+              "name": "folder",
+              "displayName": "Folder path",
+              "type": "string",
+              "defaultValue": "/",
+              "validators": [
+                {
+                  "name": "required"
+                }
+              ]
+            },
+            {
+              "name": "fileName",
+              "displayName": "Name of the file being downloaded, such as \"example.csv\"",
+              "type": "string",
+              "validators": [
+                {
+                  "name": "required"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "put": {
+      "displayName": "Put File",
+      "properties": [
+        {
+          "name": "page1",
+          "displayName": "Configuration",
+          "type": "pagination",
+          "children": [
+            {
+              "name": "folder",
+              "displayName": "Folder where the file is to be saved",
+              "type": "string",
+              "defaultValue": "/"
+            },
+            {
+              "name": "fileName",
+              "displayName": "File name to be used (it can be provided as part of a transformation)",
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    },
+    "process": {
+      "displayName": "Process File",
+      "name": "Process",
+      "kind": "outbound",
+      "polarity": "source",
+      "properties": [
+        {
+          "name": "configuration",
+          "displayName": "Configuration",
+          "type": "pagination",
+          "children": [
+            {
+              "name": "folder",
+              "displayName": "Folder path",
+              "type": "string",
+              "defaultValue": "/",
+              "validators": [
+                {
+                  "name": "required"
+                }
+              ]
+            },
+            {
+              "name": "fileName",
+              "displayName": "Name of the file being downloaded, such as \"example.xml\"",
+              "type": "string",
+              "validators": [
+                {
+                  "name": "required"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "list-object-page",
+          "type": "pagination",
+          "children": [
+            {
+              "name": "list-object",
+              "displayName": "Select an XML Schema structure for validating the file",
+              "type": "string",
+              "use": {
+                "ui": {
+                  "pageDescription": "Please select a Dropbox Object and then click the Next button.",
+                  "selectObjectLabel": "Selected Dropbox Object: ",
+                  "tableHeaders": ["Name", "Description", "Type"],
+                  "tableItems": ["name", "description", "type"]
+                },
+                "discoveryType": "provided",
+                "orientation": "output",
+                "documentIdPath": "this"
+              },
+              "validators": [{"name": "required"}]
+            }
+          ]
+        }
+      ]
+    },
+    "get": {
+      "displayName": "Get File",
+      "name": "Get",
+      "kind": "outbound",
+      "polarity": "source",
+      "properties": [
+        {
+          "name": "configuration",
+          "displayName": "Configuration",
+          "type": "pagination",
+          "children": [
+            {
+              "name": "folder",
+              "displayName": "Folder path",
+              "type": "string",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "list-object-page",
+          "type": "pagination",
+          "children": [
+            {
+              "name": "list-object",
+              "displayName": "Select a file for processing, either a JSON or XML file",
+              "type": "string",
+              "use": {
+                "ui": {
+                  "pageDescription": "Please select a file and then click the Next button.",
+                  "selectObjectLabel": "Selected File: ",
+                  "tableHeaders": ["Name", "ModifiedOn", "Type"],
+                  "tableItems": ["name", "description", "type"]
+                },
+                "discoveryType": "provided",
+                "orientation": "output",
+                "documentIdPath": "this"
+              },
+              "validators": [{"name": "required"}]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

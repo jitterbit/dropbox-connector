@@ -1,0 +1,33 @@
+{
+  "addedOrModifiedItems": {
+    "endpoints": [],
+    "activities": [
+      {
+        "id": {
+          "id": 122140
+        },
+        "guid": "ab047d38-ce75-4d68-a70c-8a6a0fa04fda",
+        "envId": 99440,
+        "name": "Sync-up Dropbox File",
+        "endpointId": {
+          "id": 52070
+        },
+        "entityTypeId": 10013,
+        "orgId": 131050,
+        "keyValues": {
+          "polling": "30",
+          "path": "/sample/FileSmall.csv"
+        },
+        "itemType": "ACTIVITY"
+      }
+    ],
+    "operations": [
+     ]
+  },
+  "deletedItems": {
+    "deletedEndpointIds": [],
+    "deletedActivityIds": [],
+    "deletedOperationIds": []
+  },
+  "envId": 99440
+}

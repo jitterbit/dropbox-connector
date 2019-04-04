@@ -1,0 +1,202 @@
+{
+  "id": "c999e2fc-d8ea-4749-a979-e08537219285",
+  "name": "JitterbitConnectorManagerAPI",
+  "description": "The Jitterbit Connector Manager API allows a developer to log in to Jitterbit Harmony and manage their custom connectors. Custom connectors are listed, registered, and deleted through this API. A custom connector must be registered before it can be built, deployed to a Local Agent, and used through Jitterbit Harmony.",
+  "auth": null,
+  "events": null,
+  "variables": null,
+  "order": [
+    "91a5f653-1d82-47e2-9ca7-3505c5e304c9",
+    "397b2cdc-cf79-44dc-a7a3-b2aa80f89d46",
+    "b88e4c38-05e0-4e23-b2cd-40898ff45ea9",
+    "ccc8aa84-24b9-42cc-a6e4-48823fc55670",
+    "41aca2af-7386-4e66-b37b-55a7fba3a1c4"
+  ],
+  "folders_order": [],
+  "folders": [],
+  "requests": [
+    {
+      "id": "397b2cdc-cf79-44dc-a7a3-b2aa80f89d46",
+      "name": "Register a Connector",
+      "url": "{{host}}/jitterbit-cloud-restful-service/orgs/{{orgId}}/connector",
+      "description": "Registers a custom connector",
+      "data": [],
+      "dataMode": "raw",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "key": "authToken",
+          "value": "{{authToken}}"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "var data = JSON.parse(responseBody);",
+              "",
+              "var key = data.key;",
+              "var secret = data.secret;",
+              "var endpointEntityId = data.endpointEntityId;",
+              "var functionEntityStartId = data.functionEntityStartId;",
+              "var functionEntityEndId = data.functionEntityEndId;",
+              "",
+              "postman.setEnvironmentVariable(\"key\", key);",
+              "postman.setEnvironmentVariable(\"secret\", secret);",
+              ""
+            ]
+          }
+        }
+      ],
+      "folder": null,
+      "preRequestScript": null,
+      "tests": "var data = JSON.parse(responseBody);\n\nvar key = data.key;\nvar secret = data.secret;\nvar endpointEntityId = data.endpointEntityId;\nvar functionEntityStartId = data.functionEntityStartId;\nvar functionEntityEndId = data.functionEntityEndId;\n\npostman.setEnvironmentVariable(\"key\", key);\npostman.setEnvironmentVariable(\"secret\", secret);\n",
+      "currentHelper": null,
+      "helperAttributes": null,
+      "collectionId": "c999e2fc-d8ea-4749-a979-e08537219285",
+      "rawModeData": "{\n\t\"name\": \"{{connectorName}}\"\n}",
+      "headers": "Content-Type: application/json\nauthToken: {{authToken}}\n",
+      "pathVariables": []
+    },
+    {
+      "id": "41aca2af-7386-4e66-b37b-55a7fba3a1c4",
+      "name": "Validate Connector Key/Secret",
+      "url": "{{host}}/jitterbit-cloud-restful-service/orgs/{{orgId}}/connector/validate/securityinfo",
+      "description": "Validate connector key and secret",
+      "data": [],
+      "dataMode": "raw",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "key": "authToken",
+          "value": "{{authToken}}"
+        }
+      ],
+      "method": "PUT",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "currentHelper": null,
+      "helperAttributes": null,
+      "collectionId": "c999e2fc-d8ea-4749-a979-e08537219285",
+      "rawModeData": "{\n    \"key\":\"{{key}}\",\n    \"secret\":\"{{secret}}\",\n    \"name\": \"{{connectorName}}\"\n}",
+      "headers": "Content-Type: application/json\nauthToken: {{authToken}}\n",
+      "pathVariables": []
+    },
+    {
+      "id": "91a5f653-1d82-47e2-9ca7-3505c5e304c9",
+      "name": "Log In User",
+      "url": "{{host}}/jitterbit-cloud-restful-service/user/login",
+      "description": "Logs in to the Jitterbit Harmony Platform",
+      "data": [],
+      "dataMode": "raw",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "PUT",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "var data = JSON.parse(responseBody);",
+              "",
+              "var orgId = data.defaultOrgId;",
+              "var token = data.authenticationToken;",
+              "postman.setEnvironmentVariable(\"orgId\", orgId);",
+              "postman.setEnvironmentVariable(\"authToken\", token);"
+            ]
+          }
+        }
+      ],
+      "folder": null,
+      "preRequestScript": null,
+      "tests": "var data = JSON.parse(responseBody);\n\nvar orgId = data.defaultOrgId;\nvar token = data.authenticationToken;\npostman.setEnvironmentVariable(\"orgId\", orgId);\npostman.setEnvironmentVariable(\"authToken\", token);",
+      "currentHelper": null,
+      "helperAttributes": null,
+      "collectionId": "c999e2fc-d8ea-4749-a979-e08537219285",
+      "rawModeData": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\"\n}",
+      "headers": "Content-Type: application/json\n",
+      "pathVariables": []
+    },
+    {
+      "id": "b88e4c38-05e0-4e23-b2cd-40898ff45ea9",
+      "name": "List Registered Connectors",
+      "url": "{{host}}/jitterbit-cloud-restful-service/orgs/{{orgId}}/connector",
+      "description": "Lists all custom connectors registered with the current security information",
+      "data": [],
+      "dataMode": null,
+      "headerData": [
+        {
+          "key": "authToken",
+          "value": "{{authToken}}"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "currentHelper": null,
+      "helperAttributes": null,
+      "collectionId": "c999e2fc-d8ea-4749-a979-e08537219285",
+      "headers": "authToken: {{authToken}}\nContent-Type: application/json\n",
+      "pathVariables": []
+    },
+    {
+      "id": "ccc8aa84-24b9-42cc-a6e4-48823fc55670",
+      "name": "Delete a Registered Connector",
+      "url": "{{host}}/jitterbit-cloud-restful-service/orgs/{{orgId}}/connector/{{connectorName}}",
+      "description": "Deletes a custom connector",
+      "data": [],
+      "dataMode": null,
+      "headerData": [
+        {
+          "key": "authToken",
+          "value": "{{authToken}}"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "method": "DELETE",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "currentHelper": null,
+      "helperAttributes": null,
+      "collectionId": "c999e2fc-d8ea-4749-a979-e08537219285",
+      "headers": "authToken: {{authToken}}\nContent-Type: application/json\n",
+      "pathVariables": []
+    }
+  ]
+}

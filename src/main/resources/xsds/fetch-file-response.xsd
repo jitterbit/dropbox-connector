@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright © 2018 Jitterbit, Inc.
+  
+  Licensed under the JITTERBIT MASTER SUBSCRIPTION AGREEMENT
+  (the "License"); you may not use this file except in compliance
+  with the License. You may obtain a copy of the License at
+
+  https://www.jitterbit.com/cloud-eula
+
+  See the License for the specific language governing permissions
+  and limitations under the License.
+  -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           targetNamespace="http://org.jitterbit.connector/dropbox/fetchfile">
+    <xs:element name="fetchFileResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="clientModified" type="xs:dateTime"/>
+                <xs:element name="serverModified" type="xs:dateTime"/>
+                <xs:element name="rev" type="xs:string"/>
+                <xs:element name="size" type="xs:integer"/>
+                <xs:element name="sharingInfo" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="readOnly" type="xs:boolean"/>
+                            <xs:element name="parentSharedFolderId" type="xs:string"/>
+                            <xs:element name="modifiedBy" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="content" type="xs:base64Binary" minOccurs="0"/>
+                <xs:element name="link" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

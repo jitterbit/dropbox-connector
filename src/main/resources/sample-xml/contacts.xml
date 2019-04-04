@@ -1,0 +1,16 @@
+<accounts>
+    <account>
+        <name>John Appleseed</name>
+        <phone>xxx-xxx-xxxxx</phone>
+        <city>Cupertino</city>
+        <state>CA</state>
+        <country>US</country>
+    </account>
+    <account>
+        <name>John D. Appleseed</name>
+        <phone>xxx-xxx-xxxxx</phone>
+        <city>San Francisco</city>
+        <state>CA</state>
+        <country>US</country>
+    </account>
+</accounts>

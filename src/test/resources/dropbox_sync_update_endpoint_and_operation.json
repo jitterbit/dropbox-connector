@@ -1,0 +1,42 @@
+{
+  "addedOrModifiedItems": {
+    "endpoints": [
+      {
+        "id": {
+          "id": 52070
+        },
+        "guid": "1d8d9fd8-b5c9-4708-b523-c9eb6a4ef964",
+        "envId": 99440,
+        "name": "Dropbox Endpoint",
+        "entityTypeId": 10001,
+        "orgId": 131050,
+        "keyValues": {
+          "access-token": "eD_tD5z4Gw8AAAAAAAAAD9lX1iDaz-wg9R-EEIMz1wO_VdADDJOG0QNAWcPk1j65",
+          "app-key": "ub8lvcovida9s2u"
+        },
+        "itemType": "ENDPOINT"
+      }
+    ],
+    "activities": [],
+    "operations": [
+     {
+        "id": {
+          "id": 122140
+        },
+        "activityId": {
+          "id": 122140
+        },
+        "envId": 99440,
+        "guid": "ab047d38-ce75-4d68-a70c-8a6a0fa04fd1",
+        "name": "Transformation 2",
+        "itemType": "OPERATION"
+      }
+     ]
+  },
+  "deletedItems": {
+    "deletedEndpointIds": [],
+    "deletedActivityIds": [],
+    "deletedOperationIds": []
+  },
+  "envId": 99440
+}

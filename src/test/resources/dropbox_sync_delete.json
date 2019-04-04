@@ -1,0 +1,17 @@
+{
+  "addedOrModifiedItems": {
+    "endpoints": [],
+    "activities": [],
+    "operations": []
+  },
+  "deletedItems": {
+    "deletedEndpointIds": [],
+    "deletedActivityIds": [
+      {
+        "id": 122140
+      }
+    ],
+    "deletedOperationIds": []
+  },
+  "envId": 99440
+}
