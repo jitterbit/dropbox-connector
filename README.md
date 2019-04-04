@@ -2,7 +2,7 @@
 
 This is an example custom Jitterbit Harmony Connector that interacts with [Dropbox](http://www.dropbox.com), developed
 using the [Dropbox Java SDK API](https://dropbox.github.io/dropbox-sdk-java/api-docs/v2.1.x/) and
-the [Jitterbit Harmony Connector SDK (v1.0.0)](https://jitterbit.github.io/connector-sdk-doc).
+the [Jitterbit Harmony Connector SDK (v1.0.0)](https://developer.jitterbit.com/connector-sdk/javadocs/).
 
 __IT IS NOT FOR PRODUCTION USE.__ It is intended as a starting point for developing custom Harmony Connectors. These
 instructions assume that you are familiar with Jitterbit Harmony, Jitterbit Harmony Cloud Studio, Jitterbit Harmony
