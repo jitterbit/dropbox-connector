@@ -1,75 +1,81 @@
 {
-  "id": "5e142948-5d1d-4fb7-bdbe-c71b44a87c53",
-  "name": "jb-connector-manager-api",
-  "values": [
-    {
-      "key": "host",
-      "value": "https://na-east.jitterbit.com",
+	"id": "47226729-e419-4cb4-a7b6-b31e5cfa1caf",
+	"name": "jb-connector-manager-api blue.qa",
+	"values": [
+		{
+			"key": "host",
+			"value": "https://qa-blue.jitterbit.com",
       "type": "text",
-      "enabled": true
-    },
-    {
-      "key": "email",
+			"enabled": true
+		},
+		{
+			"key": "email",
       "value": "",
       "type": "text",
       "enabled": true
-    },
-    {
-      "key": "password",
+		},
+		{
+			"key": "password",
       "value": "",
       "type": "text",
       "enabled": true
-    },
-    {
-      "key": "orgId",
+		},
+		{
+			"key": "orgId",
       "value": "",
       "type": "text",
       "enabled": true
-    },
-    {
-      "key": "envId",
+		},
+		{
+			"key": "envId",
       "value": "",
       "type": "text",
       "enabled": true
-    },
-    {
-      "key": "authToken",
+		},
+		{
+			"key": "authToken",
       "value": "",
       "type": "text",
       "enabled": true
-    },
-    {
-      "key": "connectorName",
-      "value": "Dropbox",
-      "type": "text",
-      "enabled": true
-    },
-    {
-      "key": "connectorVersion",
-      "value": "1.0.0",
-      "type": "text",
-      "enabled": true
-    },
-    {
-      "key": "connectorDescription",
-      "value": "Dropbox Connector",
-      "type": "text",
-      "enabled": true
-    },
-    {
-      "key": "key",
+		},
+		{
+			"key": "connectorName",
       "value": "",
       "type": "text",
       "enabled": true
-    },
-    {
-      "key": "secret",
+		},
+		{
+			"key": "connectorId",
+			"value": "",
+			"description": "",
+			"enabled": true
+		},
+		{
+			"key": "connectorVersion",
       "value": "",
       "type": "text",
       "enabled": true
-    }
-  ],
-  "_postman_variable_scope": "environment",
-  "_postman_exported_at": "2018-03-15T22:16:31.178Z",
-  "_postman_exported_using": "Postman/6.0.9"
+		},
+		{
+			"key": "connectorDescription",
+      "value": "",
+      "type": "text",
+      "enabled": true
+		},
+		{
+			"key": "key",
+      "value": "",
+      "type": "text",
+      "enabled": true
+		},
+		{
+			"key": "secret",
+      "value": "",
+      "type": "text",
+      "enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2019-04-04T23:35:35.966Z",
+	"_postman_exported_using": "Postman/7.0.6"
 }
