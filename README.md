@@ -83,8 +83,7 @@ You'll need to obtain from Jitterbit Harmony, for the connector, these values:
 - Ending activity ID
 
 To obtain these, use the Postman collection included in this example at
-`postman/JitterbitConnectorManagerAPI.collection.json`. The collection is also available at
-https://www.getpostman.com/collections/29f7dd56ce28c0a101a4.
+`postman/JitterbitConnectorManagerAPI.collection.json`.
 
 Import the environment variables from `postman/jitterbit-env-variable-postman.json` into Postman and associate them
 with the collection before running the REST API.
