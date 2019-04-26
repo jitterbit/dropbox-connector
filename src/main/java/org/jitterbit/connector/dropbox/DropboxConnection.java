@@ -15,7 +15,10 @@ package org.jitterbit.connector.dropbox;
 
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
+import com.dropbox.core.v2.files.ListFolderResult;
 import org.jitterbit.connector.sdk.Connection;
+
+import java.util.Objects;
 
 /**
  * Connection to a Dropbox endpoint. Uses the
@@ -41,13 +44,23 @@ public class DropboxConnection implements Connection {
 
   /**
    * Opens a Dropbox version 2 connection.
+   *
+   * @throws ConnectionException if there is an error while creating the client
    */
-  public void open() {
-    DbxRequestConfig dbxConfig = new DbxRequestConfig(appKey, locale);
-    client = new DbxClientV2(dbxConfig, accessToken);
-    System.out.println("Dropbox Connection successful -> access-token: " + accessToken + ", app-key: " +
-      appKey);
-    client.files();
+  public void open() throws ConnectionException {
+    if (client != null) {
+      return;
+    }
+    try {
+      DbxRequestConfig dbxConfig = new DbxRequestConfig(appKey, locale);
+      client = new DbxClientV2(dbxConfig, accessToken);
+      ListFolderResult results = client.files().listFolder("");
+      System.out.println("Dropbox Connection successful -> app-key: " + appKey + ", access-token: " + accessToken);
+    } catch (Exception x) {
+      x.printStackTrace();
+      throw new ConnectionException(Messages.DROPBOX_CODE07,
+          Messages.getMessage(Messages.DROPBOX_CODE07_MSG, new Object[]{x.getLocalizedMessage()}), x);
+    }
   }
 
   /**
@@ -55,9 +68,10 @@ public class DropboxConnection implements Connection {
    * a new Dropbox connection and returns the client.
    *
    * @return the Dropbox version 2 client
+   * @throws ConnectionException if there is an error while getting the client
    */
-  public DbxClientV2 getClient() {
-    if (client == null) {
+  public DbxClientV2 getClient() throws ConnectionException {
+    if (Objects.isNull(client)) {
       open();
     }
     return client;
