@@ -43,6 +43,10 @@ public class Messages {
   public static final String DROPBOX_CODE06_MSG = "dropbox.06";
   // "Error uploading {0}"
 
+  public static final String DROPBOX_CODE07 = "Dropbox07";
+  public static final String DROPBOX_CODE07_MSG = "dropbox.07";
+  // "Error creating connection {0}"
+
   /**
    * Returns a formatted message using a template from a keyed message store
    * and specified parameters.

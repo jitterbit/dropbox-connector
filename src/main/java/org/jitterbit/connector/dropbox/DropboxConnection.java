@@ -15,6 +15,7 @@ package org.jitterbit.connector.dropbox;
 
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
+import com.dropbox.core.v2.files.ListFolderResult;
 import org.jitterbit.connector.sdk.Connection;
 
 /**
@@ -42,12 +43,20 @@ public class DropboxConnection implements Connection {
   /**
    * Opens a Dropbox version 2 connection.
    */
-  public void open() {
-    DbxRequestConfig dbxConfig = new DbxRequestConfig(appKey, locale);
-    client = new DbxClientV2(dbxConfig, accessToken);
-    System.out.println("Dropbox Connection successful -> access-token: " + accessToken + ", app-key: " +
-      appKey);
-    client.files();
+  public void open() throws ConnectionException {
+    if (client != null) {
+      return;
+    }
+    try {
+      DbxRequestConfig dbxConfig = new DbxRequestConfig(appKey, locale);
+      client = new DbxClientV2(dbxConfig, accessToken);
+      ListFolderResult results = client.files().listFolder("");
+      System.out.println("Dropbox Connection successful -> app-key: " + appKey + ", access-token: " + accessToken);
+    } catch (Exception x) {
+      x.printStackTrace();
+      throw new ConnectionException(Messages.DROPBOX_CODE07,
+          Messages.getMessage(Messages.DROPBOX_CODE07_MSG, new Object[]{x.getLocalizedMessage()}), x);
+    }
   }
 
   /**
@@ -58,7 +67,11 @@ public class DropboxConnection implements Connection {
    */
   public DbxClientV2 getClient() {
     if (client == null) {
-      open();
+      try {
+        open();
+      } catch (ConnectionException x) {
+        x.printStackTrace();
+      }
     }
     return client;
   }
