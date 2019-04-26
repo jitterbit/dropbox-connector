@@ -36,10 +36,10 @@ import java.util.logging.Logger;
  * The Dropbox Connector has four activities (functions): fetch, get, process, and put.
  *
  * <ul>
- *   <li>Fetch File: Retrieves a file from a Dropbox location</li>
- *   <li>Get File: Gets a file from a Dropbox location, after presenting possible files</li>
- *   <li>Process File: Retrieves a file from Dropbox and parses it using a specified schema</li>
- *   <li>Put File: Uploads a file to a Dropbox location</li>
+ *   <li>Fetch File Activity: Downloads the meta-data and content associated with a specified file<li>
+ *   <li>Get File Activity: From a displayed list of files, downloads and parses it using a specified schema</li>
+ *   <li>Process File Activity: Downloads a file from Dropbox and parses it using a specified schema</li>
+ *   <li>Put File Activity: Puts (saves) a file to Dropbox</li>
  * </ul>
  *
  */

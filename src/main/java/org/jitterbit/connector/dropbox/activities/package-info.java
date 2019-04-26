@@ -20,8 +20,10 @@
  * </p>
  * <ul>
  * <li>Base Dropbox Activity, from which the other activities extend<li>
- * <li>Fetch File Activity: Fetches a file from Dropbox<li>
- * <li>Put File Activity: Puts a file to Dropbox</li> 
+ * <li>Fetch File Activity: Downloads the meta-data and content associated with a specified file<li>
+ * <li>Get File Activity: From a displayed list of files, downloads and parses it using a specified schema</li>
+ * <li>Process File Activity: Downloads a file from Dropbox and parses it using a specified schema</li>
+ * <li>Put File Activity: Puts (saves) a file to Dropbox</li>
  * </ul>
  *
  * @author Jitterbit, Inc.

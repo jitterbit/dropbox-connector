@@ -18,6 +18,8 @@ import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.files.ListFolderResult;
 import org.jitterbit.connector.sdk.Connection;
 
+import java.util.Objects;
+
 /**
  * Connection to a Dropbox endpoint. Uses the
  * <a href="https://dropbox.github.io/dropbox-sdk-java/api-docs/v2.1.x/"
@@ -42,6 +44,8 @@ public class DropboxConnection implements Connection {
 
   /**
    * Opens a Dropbox version 2 connection.
+   *
+   * @throws ConnectionException if there is an error while creating the client
    */
   public void open() throws ConnectionException {
     if (client != null) {
@@ -64,14 +68,11 @@ public class DropboxConnection implements Connection {
    * a new Dropbox connection and returns the client.
    *
    * @return the Dropbox version 2 client
+   * @throws ConnectionException if there is an error while getting the client
    */
-  public DbxClientV2 getClient() {
-    if (client == null) {
-      try {
-        open();
-      } catch (ConnectionException x) {
-        x.printStackTrace();
-      }
+  public DbxClientV2 getClient() throws ConnectionException {
+    if (Objects.isNull(client)) {
+      open();
     }
     return client;
   }
