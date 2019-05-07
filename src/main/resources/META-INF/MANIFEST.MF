@@ -1,5 +1,5 @@
 Author: Jitterbit
-Version: 1.0.11
+Version: 1.0.0
 Jitterbit-Connector-Key: 027092da-5c6a-48b7-bd51-0fea771bf24f
 Jitterbit-Connector-Secret: 4095b1bd-1eef-425c-9c72-9de25be75570
 Jitterbit-Connector-Endpoint-EntityTypeId: 200001
