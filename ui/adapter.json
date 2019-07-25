@@ -128,7 +128,7 @@
             {
               "name": "list-object",
               "displayName": "Select an XML Schema structure for validating the file",
-              "type": "string",
+              "type": "list-object",
               "use": {
                 "ui": {
                   "pageDescription": "Please select a Dropbox Object and then click the Next button.",
@@ -172,7 +172,7 @@
             {
               "name": "list-object",
               "displayName": "Select a file for processing, either a JSON or XML file",
-              "type": "string",
+              "type": "list-object",
               "use": {
                 "ui": {
                   "pageDescription": "Please select a file and then click the Next button.",
