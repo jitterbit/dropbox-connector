@@ -27,12 +27,15 @@ import org.jitterbit.connector.sdk.metadata.ActivityFunctionParameters;
 import org.jitterbit.connector.sdk.metadata.ActivityRequestResponseMetaData;
 import org.jitterbit.connector.sdk.metadata.DiscoverableObject;
 import org.jitterbit.connector.sdk.metadata.DiscoverableObjectRequest;
+import org.jitterbit.connector.sdk.metadata.SchemaMetaData;
 import org.jitterbit.connector.sdk.metadata.SchemaMetaData.SchemaContentType;
 
 
 import java.util.List;
 import java.util.logging.Logger;
 import javax.xml.namespace.QName;
+
+import static org.jitterbit.connector.dropbox.DropboxUtils.loadResource;
 
 /**
  * Implements the process file activity of a Dropbox Connector. This activity
@@ -54,6 +57,7 @@ import javax.xml.namespace.QName;
  */
 @Activity(
   name = DropboxConstants.PROCESS_FILE,
+  isDefaultActivity = false,
   factory = ProcessFileActivity.ProcessFileActivityFactory.class)
 public class ProcessFileActivity extends BaseDropboxActivity {
 
@@ -131,6 +135,12 @@ public class ProcessFileActivity extends BaseDropboxActivity {
       if (selectedObject == null) {
         throw new DiscoveryException("200", "Object " + objName + " could not be found");
       }
+      if (objName.equals("root")) {
+        return multipleSchemas();
+      }
+      if (objName.equals("root2")) {
+        return multipleSchemas2();
+      }
       String path = selectedObject.path; // "support-xsds";
       String ext = selectedObject.ext;
       String rootName = objName;
@@ -152,6 +162,61 @@ public class ProcessFileActivity extends BaseDropboxActivity {
       throw new DiscoveryException(Messages.DROPBOX_CODE02,
           Messages.getMessage(Messages.DROPBOX_CODE02_MSG, new Object[]{getName()}), x);
     }
+  }
+
+
+  protected ActivityRequestResponseMetaData multipleSchemas2() {
+    ActivityRequestResponseMetaData activitySchemaResponse = new ActivityRequestResponseMetaData();
+    try {
+      activitySchemaResponse.setResponseRootElement(new QName("root2"));
+      activitySchemaResponse.setResponseSchema(
+          new SchemaMetaData()
+              .setName("myschema1.xsd")
+              .setSchemaContentType(SchemaContentType.XSD)
+              .setContent(loadResource(DropboxUtils.class.getClassLoader(),
+                  "support-xsds/myschema1.xsd")));
+      activitySchemaResponse.getResponseSchemaReferences().add(
+          new SchemaMetaData()
+              .setName("myschema2.xsd")
+              .setSchemaContentType(SchemaContentType.XSD)
+              .setContent(loadResource(DropboxUtils.class.getClassLoader(), "support-xsds/myschema2.xsd")));
+      activitySchemaResponse.getResponseSchemaReferences().add(
+          new SchemaMetaData()
+              .setName("myschema3.xsd")
+              .setSchemaContentType(SchemaContentType.XSD)
+              .setContent(loadResource(DropboxUtils.class.getClassLoader(), "support-xsds/myschema3.xsd")));
+
+      activitySchemaResponse.getResponseSchemaReferences().add(
+          new SchemaMetaData()
+              .setName("myschema4.xsd")
+              .setSchemaContentType(SchemaContentType.XSD)
+              .setContent(loadResource(DropboxUtils.class.getClassLoader(), "support-xsds/myschema4.xsd")));
+    } catch (Exception x) {
+      Logger.getLogger(ProcessFileActivity.class.getName()).severe(x.getLocalizedMessage());
+    }
+    return activitySchemaResponse;
+  }
+
+  protected ActivityRequestResponseMetaData multipleSchemas() {
+    ActivityRequestResponseMetaData activitySchemaResponse = new ActivityRequestResponseMetaData();
+    try {
+      activitySchemaResponse.setResponseRootElement(new QName("root"));
+      activitySchemaResponse.setResponseSchema(
+          new SchemaMetaData()
+              .setName("m1.xsd")
+              .setSchemaContentType(SchemaContentType.XSD)
+              .setContent(loadResource(DropboxUtils.class.getClassLoader(),
+                  "support-xsds/m1.xsd")));
+      activitySchemaResponse.getResponseSchemaReferences().add(
+          new SchemaMetaData()
+          .setName("m2.xsd")
+          .setSchemaContentType(SchemaContentType.XSD)
+          .setContent(loadResource(DropboxUtils.class.getClassLoader(), "support-xsds/m2.xsd")));
+
+    } catch (Exception x) {
+      logger.severe(x.getLocalizedMessage());
+    }
+    return activitySchemaResponse;
   }
 
   /**
@@ -215,6 +280,29 @@ public class ProcessFileActivity extends BaseDropboxActivity {
     model.ext = "xsd";
     model.schemaContentType = org.jitterbit.connector.sdk.metadata.SchemaMetaData.SchemaContentType.XML;
     model.filename = obj.getObjectName() + ".xml";
+
+    model = new DiscoverableObjectModel();
+    obj = new DiscoverableObject();
+    obj.setObjectName("root")
+        .setObjectType("xsd")
+        .setObjectDesc("Multiple schemas");
+    model.obj = obj;
+    model.path = "sample-multiple-xsd";
+    model.ext = "xsd";
+    model.schemaContentType = SchemaContentType.XSD;
+    model.filename = obj.getObjectName() + ".xsd";
+    objects.add(model);
+
+    model = new DiscoverableObjectModel();
+    obj = new DiscoverableObject();
+    obj.setObjectName("root2")
+        .setObjectType("xsd")
+        .setObjectDesc("Multiple schemas as Xsd(4 XML Schemas)");
+    model.obj = obj;
+    model.path = "sample-multiple-xsd";
+    model.ext = "xsd";
+    model.schemaContentType = SchemaContentType.XSD;
+    model.filename = obj.getObjectName() + ".xsd";
 
     objects.add(model);
   }

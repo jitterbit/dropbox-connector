@@ -27,6 +27,45 @@
             "name": "required"
           }
         ]
+      },
+      {
+        "name": "options",
+        "displayName": "Extra Options",
+        "type": "object",
+        "multiple": true,
+        "properties": [
+          {"name": "name", "displayName": "Name", "type": "string", "validators": [{"name": "required"}]},
+          {"name": "value", "displayName": "Value", "type": "string", "validators": [{"name": "required"}]}
+        ]
+      },
+      {
+        "name": "connectionPooling",
+        "displayName": "Connection Pooling",
+        "type": "object",
+        "multiple": true,
+        "properties": [
+          {
+            "name": "name",
+            "displayName": "Name",
+            "enumValues": [
+              {"enumValue": "maxSize", "realValue": "0"},
+              {"enumValue": "minSize", "realValue": "1"},
+              {"enumValue": "maxWaitQueueSize", "realValue": "2"},
+              {"enumValue": "maxWaitTimeMS", "realValue": "3"},
+              {"enumValue": "maxConnectionLifeTimeMS", "realValue": "4"},
+              {"enumValue": "maxConnectionIdleTimeMS", "realValue": "5"}
+            ],
+            "defaultValue": "0",
+            "validators": [{"name": "required"}]
+          },
+          {
+            "name": "value",
+            "displayName": "Value",
+            "type": "string",
+            "validators": [{"name": "required"}],
+            "use": {"placeholder": "eg. 100"}
+          }
+        ]
       }
     ]
   },
@@ -128,7 +167,7 @@
             {
               "name": "list-object",
               "displayName": "Select an XML Schema structure for validating the file",
-              "type": "string",
+              "type": "list-object",
               "use": {
                 "ui": {
                   "pageDescription": "Please select a Dropbox Object and then click the Next button.",
@@ -172,7 +211,7 @@
             {
               "name": "list-object",
               "displayName": "Select a file for processing, either a JSON or XML file",
-              "type": "string",
+              "type": "list-object",
               "use": {
                 "ui": {
                   "pageDescription": "Please select a file and then click the Next button.",

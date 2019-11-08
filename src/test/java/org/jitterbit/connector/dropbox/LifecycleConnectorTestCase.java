@@ -23,6 +23,7 @@ import org.jitterbit.connector.sdk.DeployedEntity;
 import org.jitterbit.connector.sdk.DeployedEntity.ActivityEntity;
 import org.jitterbit.connector.sdk.DeployedEntity.EndpointEntity;
 import org.jitterbit.connector.sdk.DeployedEntity.OperationEntity;
+import org.jitterbit.connector.sdk.JitterbitConnector;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,7 +35,10 @@ import java.util.logging.Logger;
  */
 public class LifecycleConnectorTestCase {
 
-  public void setup() {}
+  @org.junit.Before
+  public void setUp() {
+    JitterbitConnector.CONNECTOR_CONTEXT.set(new ConnectorTestCase.MockConnectorContext());
+  }
 
   public void tearDown() {}
 

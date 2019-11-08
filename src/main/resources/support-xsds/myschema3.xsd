@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="mynamespace_d" elementFormDefault="qualified">
+    <xs:complexType name="D">
+        <xs:sequence>
+            <xs:element name="d1" type="xs:string"/>
+            <xs:element name="d2" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
