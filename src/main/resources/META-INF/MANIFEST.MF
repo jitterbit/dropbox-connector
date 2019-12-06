@@ -2,11 +2,11 @@ Author: Jitterbit
 Version: 3.0.2
 Jitterbit-Connector-Key: ****
 Jitterbit-Connector-Secret: *****
-Jitterbit-Connector-Endpoint-EntityTypeId: 200801
-Jitterbit-Activity-EntityTypeId-fetch: 200802
-Jitterbit-Activity-EntityTypeId-put: 200803
-Jitterbit-Activity-EntityTypeId-process: 200804
-Jitterbit-Activity-EntityTypeId-get: 200805
+Jitterbit-Connector-Endpoint-EntityTypeId: 
+Jitterbit-Activity-EntityTypeId-fetch: 
+Jitterbit-Activity-EntityTypeId-put: 
+Jitterbit-Activity-EntityTypeId-process: 
+Jitterbit-Activity-EntityTypeId-get: 
 Jitterbit-Connector-UI: adapter.json
 Class-Path: lib/dropbox-core-sdk-3.0.6.jar
             lib/jackson-core-2.8.6.jar
