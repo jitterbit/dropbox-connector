@@ -63,7 +63,7 @@
             "displayName": "Value",
             "type": "string",
             "validators": [{"name": "required"}],
-            "use": {"placeholder": "eg. 100"}
+            "use": {"placeholder": "example: 100"}
           }
         ]
       }
