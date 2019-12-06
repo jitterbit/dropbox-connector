@@ -1,7 +1,7 @@
 Author: Jitterbit
 Version: 3.0.2
-Jitterbit-Connector-Key: 3c64d706-36f5-4dd2-adad-f1bdd82c55c3
-Jitterbit-Connector-Secret: 7b9ed570-5d37-460c-ac98-dfcbb9fc97e4
+Jitterbit-Connector-Key: ****
+Jitterbit-Connector-Secret: *****
 Jitterbit-Connector-Endpoint-EntityTypeId: 200801
 Jitterbit-Activity-EntityTypeId-fetch: 200802
 Jitterbit-Activity-EntityTypeId-put: 200803
