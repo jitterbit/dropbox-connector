@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "16d87af7-78df-4318-a042-32cdebc16459",
-		"name": "JitterbitConnectorManagerAPI",
+		"name": "Jitterbit Connector Manager API",
 		"description": "The Jitterbit Connector Manager API allows a developer to log in to Jitterbit Harmony and manage their custom connectors. Custom connectors are listed, registered, and deleted through this API. A custom connector must be registered before it can be built, deployed to a Private Agent, and used through Jitterbit Harmony.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
