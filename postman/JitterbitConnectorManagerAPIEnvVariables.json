@@ -1,6 +1,6 @@
 {
   "id": "5e142948-5d1d-4fb7-bdbe-c71b44a87c53",
-  "name": "jb-connector-manager-api",
+  "name": "Jitterbit Connector Manager API",
   "values": [
     {
       "key": "host",
@@ -22,12 +22,6 @@
     },
     {
       "key": "orgId",
-      "value": "",
-      "type": "text",
-      "enabled": true
-    },
-    {
-      "key": "envId",
       "value": "",
       "type": "text",
       "enabled": true
