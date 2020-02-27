@@ -32,8 +32,8 @@ import java.util.logging.Logger;
  */
 public class DropboxConnectorTestCase {
 
-  public static String accessToken = "eD_tD5z4Gw8AAAAAAAAAD9lX1iDaz-wg9R-EEIMz1wO_VdADDJOG0QNAWcPk1j65";
-  public static String appKey = "ub8lvcovida9s2u";
+  public static String accessToken = System.getenv("ACCESS_TOKEN");
+  public static String appKey = System.getenv("APP_KEY");
 
   @org.junit.Test
   public void testConnectionNegative01() {
