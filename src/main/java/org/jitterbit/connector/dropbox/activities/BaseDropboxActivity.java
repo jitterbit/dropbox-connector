@@ -1,5 +1,5 @@
 /*
- * Copyright © 2018-2019 Jitterbit, Inc.
+ * Copyright © 2018-2020 Jitterbit, Inc.
  *
  * Licensed under the JITTERBIT MASTER SUBSCRIPTION AGREEMENT
  * (the "License"); you may not use this file except in compliance
@@ -22,7 +22,7 @@ import org.jitterbit.connector.sdk.metadata.ActivityRequestResponseMetaData;
 import java.util.logging.Logger;
 
 /**
- * Abstract class that all Dropbox Connector activities extend.
+ * Abstract class that all Dropbox connector activities extend.
  *
  */
 public abstract class BaseDropboxActivity implements JitterbitActivity, DropboxConstants {
@@ -32,7 +32,7 @@ public abstract class BaseDropboxActivity implements JitterbitActivity, DropboxC
   }
 
   @Override
-  public ActivityRequestResponseMetaData 
+  public ActivityRequestResponseMetaData
         getActivityRequestResponseMetadata(DiscoverContextRequest<ActivityFunctionParameters> activityConfigProps)
       throws DiscoveryException {
     return null;
@@ -78,4 +78,3 @@ public abstract class BaseDropboxActivity implements JitterbitActivity, DropboxC
 
   private static Logger logger = Logger.getLogger(BaseDropboxActivity.class.getName());
 }
-

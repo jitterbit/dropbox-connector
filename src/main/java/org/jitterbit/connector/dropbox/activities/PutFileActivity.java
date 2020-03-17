@@ -1,5 +1,5 @@
 /*
- * Copyright © 2018-2019 Jitterbit, Inc.
+ * Copyright © 2018-2020 Jitterbit, Inc.
  *
  * Licensed under the JITTERBIT MASTER SUBSCRIPTION AGREEMENT
  * (the "License"); you may not use this file except in compliance
@@ -41,7 +41,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.namespace.QName;
 
 /**
- * Implements the put file activity of a Dropbox Connector. This activity
+ * Implements the Put File activity of a Dropbox connector. This activity
  * saves (puts) a file to Dropbox. The activity has both a request and a response.
  * <p>
  * When the activity is being executed by the runtime, the <code>filename</code>
@@ -49,7 +49,7 @@ import javax.xml.namespace.QName;
  * of the function that is exposed in the Jitterbit Harmony Cloud Studio UI from the
  * execution context: see {@link #execute(ExecutionContext)}. These two parameters
  * are declared as part of the <code>adapter.json</code> file and are configured in the
- * Cloud Studio UI by the end-user.
+ * Cloud Studio UI by the end user.
  * </p>
  * <p>
  * The <code>request</code>, conforming with the

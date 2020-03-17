@@ -1,5 +1,5 @@
 /*
- * Copyright © 2018 Jitterbit, Inc.
+ * Copyright © 2018-2020 Jitterbit, Inc.
  *
  * Licensed under the JITTERBIT MASTER SUBSCRIPTION AGREEMENT
  * (the "License"); you may not use this file except in compliance
@@ -30,7 +30,7 @@ import java.net.InetSocketAddress;
 import java.util.logging.Logger;
 
 /**
- * Tests for the Dropbox Connector.
+ * Tests for the Dropbox connector.
  */
 public class LifecycleConnectorTestCase {
 

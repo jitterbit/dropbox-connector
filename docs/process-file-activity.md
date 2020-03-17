@@ -3,9 +3,9 @@
 
 ## Introduction
 
-A Dropbox process file activity retrieves data from a Dropbox connection and then processes the file based on a selected
-schema, and is used as a source in an operation. After configuring a Dropbox connection, you can configure as many
-Dropbox activities as you like for each Dropbox connection.
+A Dropbox Process File activity retrieves data from a Dropbox connection and then processes the file based on a
+selected schema, and is intended to be used as a source in an operation. After configuring a Dropbox connection, you
+can configure as many Dropbox activities as you like for each Dropbox connection.
 
 
 ## Creating a Dropbox Activity
@@ -14,22 +14,23 @@ From the design canvas, open the **Connectivity** tab of the design component pa
 
 ![Connectivity tab](./assets/connectivity-tab.png)
 
-Within the **Endpoints** filter, click the Dropbox connection block to display activities that are available to be used
-with a Dropbox connection:
+Use the **Show** dropdown to filter on **Endpoints**, and then click the Dropbox connection block to display
+activities that are available to be used with a Dropbox connection:
 
-![Connectivity tab](./assets/dropbox-connection.png)
+![Dropbox activities](./assets/dropbox-connection.png)
 
-To create an activity that can be configured, the activity must first be added to an operation on the design canvas. To
-add an activity to an operation, drag the activity block from the palette to the operation.
+To create an activity that can be configured,
+[drag the activity block](https://success.jitterbit.com/display/CS/Connectors#Connectors-activity) from the palette
+to the operation.
 
-For more information about the parts of an operation and adding activities to operations, see [Operation Creation and
-Configuration](https://success.jitterbit.com/display/CS/Operation+Creation+and+Configuration).
+For more information about the parts of an operation and adding activities to operations, see
+[Operation Creation and Configuration](https://success.jitterbit.com/display/CS/Operation+Creation+and+Configuration).
 
 
 ## Accessing Menu Actions
 
-After a Dropbox activity has been added to an operation, menu actions for that activity are accessible from the project
-pane in either the **Workflows** or the **Components** tabs, and from the design canvas:
+After a Dropbox activity has been added to an operation, menu actions for that activity are accessible from the
+project pane in either the **Workflows** or the **Components** tabs, and from the design canvas:
 
 - **Project Pane:** In the **Workflows** or **Components** tab of the project pane, hover over an activity name and
   click the actions menu icon to open the actions menu.
@@ -38,42 +39,52 @@ pane in either the **Workflows** or the **Components** tabs, and from the design
 
 Each of these menu actions is available:
 
-- **View/Edit:** This opens the activity configuration screen for you to configure the activity. For details, see
+- **View/Edit:** Opens the activity configuration screen for you to configure the activity. For details, see
   *Configuring a Dropbox Process File Activity* later on this page.
 
-- **Delete:** This is used to permanently delete the activity.
+- **Delete:** Permanently deletes the activity. A message asks you to confirm that you want to delete the activity.
 
-- **View Dependencies:** This changes the view in the project pane to display any other parts of the project that the
+- **Rename:** Positions the cursor on the activity name in the project pane for you to make edits.
+
+- **View Dependencies:** Changes the view in the project pane to display any other parts of the project that the
   activity is dependent on.
 
-- **Remove:** Available only from the actions menu on the design canvas, this removes the activity as a step in the
-  operation without deleting it from the project. When you remove an activity that is adjacent to a transformation, if
-  schemas are provided within that activity, they will no longer be referenced by the transformation. Removed components
-  can be accessed or permanently deleted from the project pane.
+- **Remove:** Removes the activity as a step in the operation without deleting it from the project. (This is
+  available only from the actions menu on the design canvas.) When you remove an activity that is adjacent to a
+  transformation and schemas are provided within that activity, the schemas are longer referenced by the
+  transformation. Removed components can be accessed or permanently deleted from the project pane.
 
-- **Deploy:** This deploys the activity and any components it is dependent on.
+- **Deploy:** Deploys the activity and any components it is dependent on.
 
-- **Configurable Deploy:** This opens the deployment screen, where you can select project components to deploy.
+- **Configurable Deploy:** Opens the deployment screen, where you can select project components to deploy.
+
+- **Add to Group:** Opens a prompt to create a new custom group or to add the component to an existing group.
+
+- **Duplicate:** Creates a copy of the activity as a new, unreferenced component. On creating the component
+  copy, the cursor is positioned on the component name within the project pane for you to rename the component.
 
 
 ## Configuring a Dropbox Process File Activity
 
-Follow these steps to configure a Dropbox process file activity:
+Follow these steps to configure a Dropbox Process File activity:
 
-- Step 1 – Enter Basic Information
-- Step 2 – Select the Dropbox Object
-- Step 3 – Review Data Schema
+- Step 1: Enter Basic Information
+- Step 2: Select the Dropbox Object
+- Step 3: Review Data Schema
 
-### Step 1 – Enter Basic Information
+### Step 1: Enter Basic Information
 
-![Connectivity tab](./assets/dropbox-process-file-1.png)
+![Dropbox Process File Activity Configuration Step 1](./assets/dropbox-process-file-1.png)
 
-**TIP:** Fields with a variable icon ![Variable icon](./assets/variable-icon.png) support using global variables,
-project variables, and Jitterbit variables. Begin typing an open square bracket `[` into the field or click the variable
-icon to display existing variables to choose from.
+**TIP:** Fields with a variable icon ![Variable icon](./assets/variable-icon.png) support using
+[global variables](https://success.jitterbit.com/display/CS/Global+Variables),
+[project variables](https://success.jitterbit.com/display/CS/Project+Variables), and
+[Jitterbit variables](https://success.jitterbit.com/display/CS/Jitterbit+Variables). Begin by either typing an open
+square bracket `[` into the field or by clicking the variable icon to display a list of the existing variables to
+choose from.
 
-- **Name:** Enter a name to use to identify the Dropbox process file activity. The name must be unique for each process file
-  activity and must not contain forward slashes (`/`) or colons (`:`).
+- **Name:** Enter a name to use to identify the Dropbox Process File activity. The name must be unique for each
+  Dropbox Process File activity and must not contain forward slashes (`/`) or colons (`:`).
 
 - **Folder Path:** Enter a valid path. The path should point to an existing directory on the Dropbox server. For
   example, `/inbound`.
@@ -84,61 +95,95 @@ icon to display existing variables to choose from.
 
 - **Save & Exit:** If enabled, click to save the configuration for this step and close the activity configuration.
 
-- **Next:** Click to save the configuration for this step and continue to the next step.
+- **Next:** Click to continue to the next step and temporarily store the configuration.
 
-- **Discard Changes:** After making changes to this step, click **Discard Changes** to close the configuration without
-  saving changes to this step. A message will ask you to confirm that you want to discard changes.
+- **Discard Changes:** After making changes, click to close the configuration without saving changes made to any
+  step. A message asks you to confirm that you want to discard changes.
 
-### Step 2 – Select the Dropbox Object
+### Step 2: Select the Dropbox Object
 
-![Connectivity tab](./assets/dropbox-process-file-2.png)
+![Dropbox Process File Activity Configuration Step 2](./assets/dropbox-process-file-2.png)
 
-In this step, select the Dropbox Object type that you want to use to process the data. The object selected will
-determine the XML schema used when processing the data. You can enter an object name in the search field to filter the
-list of objects and limit them to a subset of the entire list.
+- **Select an XML Schema Structure for Validating the File:** This section displays types of objects available in
+  the Dropbox endpoint to use when processing the data. The object selected will determine the XML schema used when
+  processing the data. When reopening an existing activity configuration, only the selected object is displayed
+  instead of reloading the entire object list.
 
-- **Back:** Click to save the configuration for this step and return to the previous step.
+  - **Selected Dropbox Object:** After an object is selected, it will be listed here.
 
-- **Next:** Click to save the configuration for this step and continue to the next step.
+  - **Search:** Enter any part of the object name into the search box to filter the list of objects. The search is
+    not case-sensitive. If objects are already displayed within the table, the table results will be filtered in
+    real time with each keystroke. To reload objects from the endpoint when searching, enter search criteria and
+    then refresh, as described below.
 
-- **Discard Changes:** After making changes to this step, click **Discard Changes** if you want to close the
-  configuration without saving changes to this step. A message will ask you to confirm that you want to discard changes.
+  - **Refresh:** Click the refresh icon ![Refresh icon](./assets/refresh-icon.png) or the word **Refresh** to
+    reload objects from the Dropbox endpoint. This may be useful if you have recently added objects to Dropbox. This
+    action refreshes all metadata used to build the table of objects displayed in the configuration.
 
-### Step 3 – Review Data Schema
+  - **Selecting an Object:** Within the table, click anywhere on a row to select an object. Only one object can be    
+    selected. The information available for each object is fetched from the Dropbox endpoint:
 
-![Connectivity tab](./assets/dropbox-process-file-3.png)
+    - **Name:** The object name from Dropbox.
 
-- **Data Schema:** The response data schema from Dropbox will be displayed. If the operation uses a transformation, the
-  data schemas will be displayed again later during the transformation mapping process, where you can map to target
-  fields using source objects, scripts, variables, custom values, and more.
+    - **Description:** The type of schema structure that the object from Dropbox is associated with.
 
-- **Add Plugin(s):** Plugins are Jitterbit- or user-provided applications that extend Harmony's native capabilities. To
-  apply a plugin to the activity, click to expand this section and select the checkbox next to the plugin to be used.
-  For additional instructions on using plugins, including details on setting any required variables used by the plugin,
-  see [Plugins Added to an Activity](https://success.jitterbit.com/display/CS/Plugins+Added+to+an+Activity).
+    - **Type:** The object description from Dropbox. Do not select an object that uses a schema type other than XML.
 
-- **Back:** Click to save the configuration for this step and return to the previous step.
+  **TIP:** If the table does not populate with available objects, the [Dropbox connection](./connection.md) may not
+  be successful. Ensure you are connected by reopening the connection and retesting the credentials.
 
-- **Finished:** Click to save the configuration for this step and close the activity configuration.
+- **Back:** Click to return to the previous step and temporarily store the configuration.
 
-- **Discard Changes:** After making changes to this step, click **Discard Changes** to close the configuration without
-  saving changes to this step. A message will ask you to confirm that you want to discard changes.
+- **Next:** Click to continue to the next step and temporarily store the configuration.
+
+- **Discard Changes:** After making changes, click to close the configuration without saving changes made to any
+  step. A message asks you to confirm that you want to discard changes.
+
+### Step 3: Review Data Schema
+
+![Dropbox Process File Activity Configuration Step 3](./assets/dropbox-process-file-3.png)
+
+- **Data Schema:** The request and response data schemas for Dropbox will be displayed. If the operation uses a
+  transformation, the data schemas will be displayed again later during the transformation mapping process, where
+  you can map to target fields using source objects, scripts, variables, custom values, and more.
+
+  The Dropbox connector uses the [Dropbox Java SDK API](https://dropbox.github.io/dropbox-sdk-java/api-docs/v2.1.x/).
+  Refer to the SDK documentation for information on the schema fields.
+
+- **Back:** Click to return to the previous step and temporarily store the configuration.
+
+- **Finished:** Click to save the configuration for all steps and close the activity configuration.
+
+- **Discard Changes:** After making changes, click to close the configuration without saving changes made to any
+  step. A message asks you to confirm that you want to discard changes.
 
 
 ## Next Steps
 
-After configuring a Dropbox process file activity, complete the configuration of the operation by adding and configuring
-other activities, transformations, or scripts as operation steps. You can also configure an operation's operation
-settings, which include the ability to chain operations together that are in the same or different workflows.
+After configuring a Dropbox Process File activity, complete the configuration of the operation by adding and
+configuring other activities, transformations, or scripts as operation steps. You can also configure an operation's
+operation settings, which include the ability to chain operations together that are in the same or different
+workflows.
 
-Dropbox process file activities can be used as a source with the _Transformation Pattern_, _Two-Target Archive Pattern_,
-or _Two-Target Transformation Pattern_. Other patterns are not valid using Dropbox process file activities.
-See the validation rules on the [Operation Validity](https://success.jitterbit.com/display/CS/Operation+Validity) page.
+Dropbox Process File activities can be used as a source with these operation patterns:
+
+- [_Transformation Pattern_](https://success.jitterbit.com/display/CS/Operation+Validity#OperationValidity-transformation-pattern)
+- [_Two-Target Archive Pattern_](https://success.jitterbit.com/display/CS/Operation+Validity#OperationValidity-two-target-archive-pattern)
+  (as the first source only)
+- [_Two-Transformation Pattern_](https://success.jitterbit.com/display/CS/Operation+Validity#OperationValidity-two-transformation-pattern)
+  (as the first or second source)
+
+Other patterns are not valid using Dropbox Process File activities. See the validation patterns on the
+[Operation Validity](https://success.jitterbit.com/display/CS/Operation+Validity) page.
+
+For a typical use case, see the
+[Dropbox Connector Tutorial Scenario 4: Process File](https://developer.jitterbit.com/connector-sdk/tutorial/scenario-4/).
 
 To use the activity with scripting functions, write the data to a temporary location and then use that temporary
 location in the scripting function.
 
-When ready, deploy and run the operation and validate behavior by checking the operation logs.
+When ready, deploy and run the operation and validate behavior by checking the
+[operation logs](https://success.jitterbit.com/display/CS/Operation+Logs).
 
 
 ## Related Pages

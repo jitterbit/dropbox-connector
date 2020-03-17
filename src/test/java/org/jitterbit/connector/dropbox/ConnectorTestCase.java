@@ -1,5 +1,5 @@
 /*
- * Copyright © 2018 Jitterbit, Inc.
+ * Copyright © 2018-2020 Jitterbit, Inc.
  *
  * Licensed under the JITTERBIT MASTER SUBSCRIPTION AGREEMENT
  * (the "License"); you may not use this file except in compliance
@@ -17,7 +17,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Test for the Dropbox Connector.
+ * Test for the Dropbox connector.
  */
 public class ConnectorTestCase {
 

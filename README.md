@@ -1,13 +1,13 @@
 # Jitterbit Harmony Dropbox Connector
 
-This is an example custom Jitterbit Harmony Connector that interacts with [Dropbox](http://www.dropbox.com), developed
+This is an example custom Jitterbit Harmony connector that interacts with [Dropbox](http://www.dropbox.com), developed
 using the [Dropbox Java SDK API](https://dropbox.github.io/dropbox-sdk-java/api-docs/v2.1.x/) and
 the [Jitterbit Harmony Connector SDK (v1.0.0)](https://developer.jitterbit.com/connector-sdk/javadocs/).
 
-__IT IS NOT FOR PRODUCTION USE.__ It is intended as a starting point for developing custom Harmony Connectors. These
+__IT IS NOT FOR PRODUCTION USE.__ It is intended as a starting point for developing custom Harmony connectors. These
 instructions assume that you are familiar with Jitterbit Harmony, Jitterbit Harmony Cloud Studio, Jitterbit Harmony
-Private Agents, and Java development. If you are not familiar with Jitterbit Harmony, please see [our
-documentation](http://success.jitterbit.com) for more information.
+Private Agents, and Java development. If you are not familiar with Jitterbit Harmony, please see
+[our documentation](http://success.jitterbit.com) for more information.
 
 
 ## Documentation
@@ -63,7 +63,7 @@ for end-users of Cloud Studio rather than developers of connectors.
 
 ## Registering, Building, and Running
 
-Follow these steps to register, build, and run the Dropbox Connector:
+Follow these steps to register, build, and run the Dropbox connector:
 
 - [Registering the Connector with Jitterbit Harmony](#registering-the-connector-with-jitterbit-harmony)
 - [Cloning the Dropbox Connector Repository](#cloning-the-dropbox-connector-repository)
@@ -128,9 +128,9 @@ The key and secret returned will become, following the table above, the `Jitterb
 `Jitterbit-Connector-Secret` in the manifest for the container.
 
 The connector has been allocated an endpoint ID and a range of activity (function) endpoint IDs, from the start
-through to the finish. Because the Dropbox Connector has only two activities (fetch and put), you can use the start
+through to the finish. Because the Dropbox connector has only two activities (Fetch File and Put File), you can use the start
 and end values with these two activities. (If you have more than two activities, you would assign individual IDs to each
-activity that fall in your assigned range.)
+activity that falls in your assigned range.)
 
 
 ### Cloning the Dropbox Connector Repository
@@ -148,7 +148,7 @@ include attributes specific to the connector(s) within the `MANIFEST.MF` file. T
 registration process need to be included in the manifest, as described above. For additional details, check the
 [PACKAGING.md](PACKAGING.md).
 
-Skipping the details, and to directly build the Dropbox Connector, run this command:
+Skipping the details, and to directly build the Dropbox connector, run this command:
 
     $ mvn jaxb2:xjc compile install
 
@@ -220,11 +220,11 @@ From within the container, tailing the Tomcat logs to check the connector logs:
     2018-02-27 01:37:35,145  INFO com.jitterbit.integration.server.api.ws.connectorframework.ConnectorClassLoader:161 - Register Activity Factory with id: 10013 name: syncUpFile factory: org.jitterbit.connector.dropbox.activities.GetFileActivity$GetFileActivityFactory
     27-Feb-2018 01:37:35.163 INFO [localhost-startStop-1] org.jitterbit.connector.sdk.BaseJitterbitConnector.onInit onInit() connector name: DropBox
 
-If you see messages similar to the above in the logs, it means that the Dropbox Connector has been successfully
-started. You can now log in to the Harmony Portal, open Cloud Studio, and begin using the connector in new projects.
+If you see messages similar to the above in the logs, it means that the Dropbox connector has been successfully
+started. You can now log in to the Harmony Portal, open Cloud Studio, and begin using the connector in projects.
 
-Once you create a new project within the organization that the Private Agent is associated with, you should see the
-Dropbox Connector in the palette. You can then configure the connector as any other connector in Cloud Studio.
+Once you open a project within the organization that the Private Agent is associated with, you should see the
+Dropbox connector in the palette. You can then configure the connector as any other connector in Cloud Studio.
 
 
 ### Useful Commands
@@ -256,7 +256,7 @@ port `5005`.
 
 ## Support and Questions
 
-If you have support issues, questions, or comments about either the example Dropbox Connector or the Connector SDK, get
+If you have support issues, questions, or comments about either the example Dropbox connector or the Connector SDK, get
 in touch with our expert support team by submitting a support case.
 
 See [Getting Support](https://success.jitterbit.com/display/DOC/Getting+Support).
@@ -264,7 +264,7 @@ See [Getting Support](https://success.jitterbit.com/display/DOC/Getting+Support)
 
 ## Copyright
 
-Copyright © 2018-2019 Jitterbit, Inc.
+Copyright © 2018-2020 Jitterbit, Inc.
 
 Licensed under the JITTERBIT MASTER SUBSCRIPTION AGREEMENT (the "License"); you may not use this file except in
 compliance with the License. You may obtain a copy of the License at

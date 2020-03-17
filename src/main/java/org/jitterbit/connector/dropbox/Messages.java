@@ -1,5 +1,5 @@
 /*
- * Copyright © 2018-2019 Jitterbit, Inc.
+ * Copyright © 2018-2020 Jitterbit, Inc.
  *
  * Licensed under the JITTERBIT MASTER SUBSCRIPTION AGREEMENT
  * (the "License"); you may not use this file except in compliance
@@ -17,7 +17,7 @@ import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
 /**
- * Dropbox Connector-related message templates used in thrown exceptions.
+ * Message templates used in thrown exceptions related to the Dropbox connector.
  */
 public class Messages {
 

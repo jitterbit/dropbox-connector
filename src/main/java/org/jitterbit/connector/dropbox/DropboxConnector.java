@@ -1,5 +1,5 @@
 /*
- * Copyright © 2018-2019 Jitterbit, Inc.
+ * Copyright © 2018-2020 Jitterbit, Inc.
  *
  * Licensed under the JITTERBIT MASTER SUBSCRIPTION AGREEMENT
  * (the "License"); you may not use this file except in compliance
@@ -33,10 +33,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * The Dropbox Connector has four activities (functions): fetch, get, process, and put.
+ * The Dropbox connector has four activities (functions): Fetch File, Get File, Process File, and Put File.
  *
  * <ul>
- *   <li>Fetch File Activity: Downloads the meta-data and content associated with a specified file<li>
+ *   <li>Fetch File Activity: Downloads the metadata and content associated with a specified file<li>
  *   <li>Get File Activity: From a displayed list of files, downloads and parses it using a specified schema</li>
  *   <li>Process File Activity: Downloads a file from Dropbox and parses it using a specified schema</li>
  *   <li>Put File Activity: Puts (saves) a file to Dropbox</li>
