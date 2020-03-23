@@ -176,8 +176,13 @@ Dropbox Process File activities can be used as a source with these operation pat
 Other patterns are not valid using Dropbox Process File activities. See the validation patterns on the
 [Operation Validity](https://success.jitterbit.com/display/CS/Operation+Validity) page.
 
-For a typical use case, see the
-[Dropbox Connector Tutorial Scenario 4: Process File](https://developer.jitterbit.com/connector-sdk/tutorial/scenario-4/).
+A typical use case is to use a Dropbox Process File activity in the _Two-Transformation Pattern_. In this example,
+the first transformation (_Dropbox Process File Request_) creates a request structure that is passed to the Dropbox
+Process File activity. The second transformation (_Dropbox Process File Response_) receives the response structure,
+which is then written to a variable by a Variable Write activity (_Write Dropbox Process Response_) and a message is
+then logged by the _Write to Operation Log_ script:
+
+![Dropbox Process File operation](./assets/dropbox-process-file-activity-operation.png)
 
 To use the activity with scripting functions, write the data to a temporary location and then use that temporary
 location in the scripting function.

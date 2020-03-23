@@ -116,21 +116,21 @@ As can be seen from this example, your connector has been registered, has an ent
 activity entity IDs ranging from `20102` through `20200`.
 
 
-| `Register a Connector` API | Manifest File Keys                          |
-| -------------------------- | ------------------------------------------- |
-| `key`                      | `Jitterbit-Connector-Key`                   |
-| `secret`                   | `Jitterbit-Connector-Secret`                |
-| `endpointEntityId`         | `Jitterbit-Connector-Endpoint-EntityTypeId` |
-| `functionEntityStartId`    | `Jitterbit-Activity-EntityTypeId-fetch`     |
-| `functionEntityEndId`      | `Jitterbit-Activity-EntityTypeId-put`       |
+| `Register a Connector` API | Manifest File Keys                                 |
+| -------------------------- | ---------------------------------------------------|
+| `key`                      | `Jitterbit-Connector-Key`                          |
+| `secret`                   | `Jitterbit-Connector-Secret`                       |
+| `endpointEntityId`         | `Jitterbit-Connector-Endpoint-EntityTypeId`        |
+| `functionEntityStartId`    | `Jitterbit-Activity-EntityTypeId-<first_activity>` |
+| `functionEntityEndId`      | `Jitterbit-Activity-EntityTypeId-<last_activity>`  |
 
-The key and secret returned will become, following the table above, the `Jitterbit-Connector-Key` and
+The key and secret returned will become, as shown in the table above, the `Jitterbit-Connector-Key` and
 `Jitterbit-Connector-Secret` in the manifest for the container.
 
-The connector has been allocated an endpoint ID and a range of activity (function) endpoint IDs, from the start
-through to the finish. Because the Dropbox connector has only two activities (Fetch File and Put File), you can use the start
-and end values with these two activities. (If you have more than two activities, you would assign individual IDs to each
-activity that falls in your assigned range.)
+The connector has been allocated an endpoint ID and a range of activity (function) endpoint IDs, from the first to
+the last. In the case of the Dropbox connector, which has four activities (Fetch File, Get File, Process File, and
+Put File), you would assign individual IDs to each activity such that they fall inside the assigned range. A
+maximum of 99 activities can be assigned to an individual connector.
 
 
 ### Cloning the Dropbox Connector Repository
@@ -264,7 +264,7 @@ See [Getting Support](https://success.jitterbit.com/display/DOC/Getting+Support)
 
 ## Copyright
 
-Copyright © 2018-2020 Jitterbit, Inc.
+Copyright © 2018-2019 Jitterbit, Inc.
 
 Licensed under the JITTERBIT MASTER SUBSCRIPTION AGREEMENT (the "License"); you may not use this file except in
 compliance with the License. You may obtain a copy of the License at

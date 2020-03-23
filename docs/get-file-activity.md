@@ -172,8 +172,13 @@ Dropbox Get File activities can be used as a source with these operation pattern
 Other patterns are not valid using Dropbox Get File activities. See the validation patterns on the
 [Operation Validity](https://success.jitterbit.com/display/CS/Operation+Validity) page.
 
-For a typical use case, see the
-[Dropbox Connector Tutorial Scenario 5: Get File](https://developer.jitterbit.com/connector-sdk/tutorial/scenario-5/).
+A typical use case is to use a Dropbox Get File activity in the _Two-Transformation Pattern_. In this example, the
+first transformation (_Dropbox Get File Request_) creates a request structure that is passed to the Dropbox Get
+File activity. The second transformation (_Dropbox Get File Response_) receives the response structure, which is
+then written to a variable by a Variable Write activity (_Write Dropbox Get File Response_) and a message is then
+logged by the _Write to Operation Log_ script:
+
+![Dropbox Get File operation](./assets/dropbox-get-file-activity-operation.png)
 
 To use the activity with scripting functions, write the data to a temporary location and then use that temporary
 location in the scripting function.
