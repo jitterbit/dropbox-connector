@@ -102,7 +102,7 @@ See the [README.md](README.md) in this directory for additional information.
 
 ## Copyright
 
-Copyright © 2018-2019 Jitterbit, Inc.
+Copyright © 2018-2020 Jitterbit, Inc.
 
 Licensed under the JITTERBIT MASTER SUBSCRIPTION AGREEMENT (the "License"); you may not use this file except in
 compliance with the License. You may obtain a copy of the License at
