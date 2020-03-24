@@ -15,7 +15,7 @@ To build using Maven, edit your `pom.xml` and add this to the dependency section
 ## Manifest
 
 As part of the Maven build, these attributes must be present as part of the `MANIFEST.MF` to
-indicate that this is a Jitterbit Harmony Connector:
+indicate that this is a Jitterbit Harmony connector:
 
 ```shell
 Author: <author-name>
@@ -34,7 +34,7 @@ Where:
 
 - `Author`: Replace `<author-name>` with your name.
 - `Version`: Set an appropriate version identifier.
-- `Jitterbit-Connector`: Set to `true`, to indicate that this bundle is a Jitterbit Harmony Connector.
+- `Jitterbit-Connector`: Set to `true`, to indicate that this bundle is a Jitterbit Harmony connector.
 - `Jitterbit-Connector-*`: See the [README.md](README.md) file for details on obtaining these attributes using a REST
   API.
 - `Jitterbit-Connector-Factory-Class`: (Optional) Provides the factory class that creates an instance of
@@ -47,10 +47,10 @@ Where:
 - `Class-Path`: A list of space-separated URLs that should include all of the third-party JARs that make up the
   connector. In this example, it contains the Dropbox SDK JAR.
 
-For the IDs, the values are obtained using a REST API as described in the [README.md]. In this example, the connector
-endpoint ID is `20001`, the fetch activity has been assigned `20002`, and the put activity has been assigned
-`20003`. (The REST API will have returned an ending range activity ID of `20100`.) When building the connector,
-replace these values with the values returned by the REST API.
+For the IDs, the values are obtained using a REST API as described in the [README.md](README.md). In this example,
+the connector endpoint ID is `20001`, the Fetch File activity has been assigned `20002`, and the Put File activity
+has been assigned `20003`. (The REST API will have returned an ending range activity ID of `20100`.) When building
+the connector, replace these values with the values returned by the REST API.
 
 **NOTE:** Incrementing the version will cause the connector to be reloaded from the Private Agent. Use incrementing of
 the version during development to ensure that the correct version is used by the Cloud Studio.
@@ -102,7 +102,7 @@ See the [README.md](README.md) in this directory for additional information.
 
 ## Copyright
 
-Copyright © 2018-2019 Jitterbit, Inc.
+Copyright © 2018-2020 Jitterbit, Inc.
 
 Licensed under the JITTERBIT MASTER SUBSCRIPTION AGREEMENT (the "License"); you may not use this file except in
 compliance with the License. You may obtain a copy of the License at

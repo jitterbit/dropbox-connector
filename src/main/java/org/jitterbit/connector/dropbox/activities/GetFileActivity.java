@@ -1,5 +1,5 @@
 /*
- * Copyright © 2018-2019 Jitterbit, Inc.
+ * Copyright © 2018-2020 Jitterbit, Inc.
  *
  * Licensed under the JITTERBIT MASTER SUBSCRIPTION AGREEMENT
  * (the "License"); you may not use this file except in compliance
@@ -42,7 +42,7 @@ import java.util.logging.Logger;
 import javax.xml.namespace.QName;
 
 /**
- * Implements the get file activity of a Dropbox Connector. This activity
+ * Implements the Get File activity of a Dropbox connector. This activity
  * lets a user select from different files associated with a path at
  * configuration time. The activity downloads a file and parses it using the specified schema.
  * <p>
@@ -51,7 +51,7 @@ import javax.xml.namespace.QName;
  * of the function that is exposed in the Jitterbit Harmony Cloud Studio UI from the
  * execution context: see {@link #execute(ExecutionContext)}. The <code>path</code> parameter
  * is declared as part of the <code>adapter.json</code> file and configured in the
- * Cloud Studio UI by the end-user. The available files are discovered based on
+ * Cloud Studio UI by the end user. The available files are discovered based on
  * the <code>path</code>, and the user specifies the desired <code>filename</code>.
  * </p>
  * <p>

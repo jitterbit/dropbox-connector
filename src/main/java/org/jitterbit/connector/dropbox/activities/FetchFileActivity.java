@@ -1,5 +1,5 @@
 /*
- * Copyright © 2018-2019 Jitterbit, Inc.
+ * Copyright © 2018-2020 Jitterbit, Inc.
  *
  * Licensed under the JITTERBIT MASTER SUBSCRIPTION AGREEMENT
  * (the "License"); you may not use this file except in compliance
@@ -36,20 +36,20 @@ import java.util.logging.Logger;
 import javax.xml.namespace.QName;
 
 /**
- * Implements the fetch file activity of a Dropbox Connector. This activity
- * downloads the meta-data and content associated with a specified file.
+ * Implements the Fetch File activity of a Dropbox connector. This activity
+ * downloads the metadata and content associated with a specified file.
  * <p>
  * When the activity is being executed by the runtime, the <code>filename</code>
  * and <code>folder</code> parameters can be obtained as part of the configuration
  * of the function that is exposed in the Jitterbit Harmony Cloud Studio UI from the
  * execution context: see {@link #execute(ExecutionContext)}. These two parameters
  * are declared as part of the <code>adapter.json</code> file and configured in the
- * Cloud Studio UI by the end-user.
+ * Cloud Studio UI by the end user.
  * </p>
  * <p>
  * The <code>request</code>, conforming with the
  * <code>resources/xsds/fetch-file-request.xsd</code> XML Schema, represents the input
- * associated to this activity. An end-user will have the option to map data
+ * associated to this activity. An end user will have the option to map data
  * to it that describes the file to be downloaded.
  * </p>
  * <p>

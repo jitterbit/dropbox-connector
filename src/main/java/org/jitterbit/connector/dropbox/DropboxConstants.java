@@ -1,5 +1,5 @@
 /*
- * Copyright © 2018-2019 Jitterbit, Inc.
+ * Copyright © 2018-2020 Jitterbit, Inc.
  *
  * Licensed under the JITTERBIT MASTER SUBSCRIPTION AGREEMENT
  * (the "License"); you may not use this file except in compliance
@@ -14,7 +14,7 @@
 package org.jitterbit.connector.dropbox;
 
 /**
- * Dropbox Connector-related constants.
+ * Constants related to the Dropbox connector.
  */
 public interface DropboxConstants {
 

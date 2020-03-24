@@ -33,7 +33,7 @@ public class DropboxConnectionFactory implements DropboxConstants, ConnectionFac
    *
    * @param props properties for configuring and creating a Dropbox connection
    * @return the configured connection
-   * @throws RuntimeException if the App Key or Access Token properties of the 
+   * @throws RuntimeException if the App Key or Access Token properties of the
    * specified properties are empty or null
    */
   @Override
@@ -42,7 +42,7 @@ public class DropboxConnectionFactory implements DropboxConstants, ConnectionFac
     String appKey = props.get(APP_KEY);
     String locale = !props.containsKey(LOCALE) ? Locale.getDefault().toString() : "EN_US";
     if (accessToken == null || accessToken.length() == 0) {
-      throw new RuntimeException("Access Token property cannot be empty. " + 
+      throw new RuntimeException("Access Token property cannot be empty. " +
         "Specify the access token associated with the registered Dropbox application.");
     }
     if (appKey == null || appKey.length() == 0) {

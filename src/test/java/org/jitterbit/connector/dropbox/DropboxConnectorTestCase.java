@@ -1,5 +1,5 @@
 /*
- * Copyright © 2018 Jitterbit, Inc.
+ * Copyright © 2018-2020 Jitterbit, Inc.
  *
  * Licensed under the JITTERBIT MASTER SUBSCRIPTION AGREEMENT
  * (the "License"); you may not use this file except in compliance
@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 /**
- * Tests for the Dropbox Connector.
+ * Tests for the Dropbox connector.
  */
 public class DropboxConnectorTestCase {
 
@@ -132,7 +132,7 @@ public class DropboxConnectorTestCase {
     return new DropboxConnector.DropboxConnectorFactory().create().getConnectionFactory().createConnection(params);
   }
 
-  private JitterbitActivity.ExecutionContext createExecutionContext(Map<String, String> connectionEndpoint, 
+  private JitterbitActivity.ExecutionContext createExecutionContext(Map<String, String> connectionEndpoint,
       Map<String, String> functionParams) {
     return new MockConnectorEngine.MockExecutionContext(connectionEndpoint, functionParams);
   }
