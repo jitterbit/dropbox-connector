@@ -18,6 +18,7 @@ import org.jitterbit.connector.dropbox.activities.PutFileActivity;
 import org.jitterbit.connector.sdk.Connection;
 import org.jitterbit.connector.sdk.Discoverable;
 import org.jitterbit.connector.sdk.JitterbitActivity;
+import org.jitterbit.connector.sdk.JitterbitConnector;
 import org.jitterbit.connector.sdk.metadata.ActivityFunctionParameters;
 import org.jitterbit.connector.sdk.metadata.ActivityRequestResponseMetaData;
 import org.junit.Assert;
@@ -34,6 +35,11 @@ public class DropboxConnectorTestCase {
 
   public static String accessToken = "eD_tD5z4Gw8AAAAAAAAAD9lX1iDaz-wg9R-EEIMz1wO_VdADDJOG0QNAWcPk1j65";
   public static String appKey = "ub8lvcovida9s2u";
+
+  @org.junit.Before
+  public void setUp() {
+    JitterbitConnector.CONNECTOR_CONTEXT.set(new ConnectorTestCase.MockConnectorContext());
+  }
 
   @org.junit.Test
   public void testConnectionNegative01() {

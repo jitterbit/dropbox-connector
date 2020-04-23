@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           xmlns:c="mynamespace_c"
+           xmlns:e="mynamespace_e">
+    <xs:import namespace="mynamespace_c" schemaLocation="myschema2.xsd"></xs:import>
+    <xs:import namespace="mynamespace_e" schemaLocation="myschema4.xsd"></xs:import>
+
+    <xs:element name="root2">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="c" type="c:C"/>
+                <xs:element name="e" type="e:E"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

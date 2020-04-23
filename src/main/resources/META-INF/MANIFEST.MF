@@ -1,11 +1,21 @@
 Author: Jitterbit
-Version: 1.0.0
-Jitterbit-Connector-Key: 027092da-5c6a-48b7-bd51-0fea771bf24f
-Jitterbit-Connector-Secret: 4095b1bd-1eef-425c-9c72-9de25be75570
-Jitterbit-Connector-Endpoint-EntityTypeId: 200001
+Version: 3.0.2
+Jitterbit-Connector-Key: ****
+Jitterbit-Connector-Secret: *****
+Jitterbit-Connector-Endpoint-EntityTypeId: 
+Jitterbit-Activity-EntityTypeId-fetch: 
+Jitterbit-Activity-EntityTypeId-put: 
+Jitterbit-Activity-EntityTypeId-process: 
+Jitterbit-Activity-EntityTypeId-get: 
 Jitterbit-Connector-UI: adapter.json
-Jitterbit-Activity-EntityTypeId-fetch: 200002
-Jitterbit-Activity-EntityTypeId-put: 200003
-Jitterbit-Activity-EntityTypeId-process: 200004
-Jitterbit-Activity-EntityTypeId-get: 200005
 Class-Path: lib/dropbox-core-sdk-3.0.6.jar
+            lib/jackson-core-2.8.6.jar
+            lib/jackson-databind-2.8.5.jar
+            lib/jackson-annotations-2.8.5.jar
+            lib/commons-discovery-0.5.jar
+            lib/commons-logging-1.2.jar
+            lib/gson-2.3.jar
+            lib/commons-io-2.6.jar
+            lib/guava-19.0.jar
+            lib/log4j-1.2.17.jar
+

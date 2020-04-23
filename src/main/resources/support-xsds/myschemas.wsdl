@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.example.com/webservice"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:q="mynamespace"> 
+        <xs:import namespace="mynamespace" schemaLocation="myschema2.xsd"></xs:import>
+        <xs:element name="root2">
+            <xs:complexType>
+                <xs:sequence>
+                    <xs:element name="c" type="q:C"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="mynamespace" elementFormDefault="qualified"> 
+        <xs:complexType name="C">
+            <xs:sequence>
+                <xs:element name="c1" type="xs:string"/>
+                <xs:element name="c2" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:schema>
+    </wsdl:types>
+</wsdl:definitions>

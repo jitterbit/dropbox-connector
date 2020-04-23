@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="mynamespace_c"
+           elementFormDefault="qualified">
+    <xs:complexType name="C">
+        <xs:sequence>
+            <xs:element name="c1" type="xs:string"/>
+            <xs:element name="c2" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

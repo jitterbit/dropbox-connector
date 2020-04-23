@@ -19,6 +19,7 @@ import com.dropbox.core.v2.files.ListFolderResult;
 import org.jitterbit.connector.sdk.Connection;
 
 import java.util.Objects;
+import java.util.logging.Logger;
 
 /**
  * Connection to a Dropbox endpoint. Uses the
@@ -55,7 +56,7 @@ public class DropboxConnection implements Connection {
       DbxRequestConfig dbxConfig = new DbxRequestConfig(appKey, locale);
       client = new DbxClientV2(dbxConfig, accessToken);
       ListFolderResult results = client.files().listFolder("");
-      System.out.println("Dropbox Connection successful -> app-key: " + appKey + ", access-token: " + accessToken);
+      logger.info("Dropbox Connection successful -> app-key: " + appKey + ", access-token: " + accessToken);
     } catch (Exception x) {
       x.printStackTrace();
       throw new ConnectionException(Messages.DROPBOX_CODE07,
@@ -83,7 +84,7 @@ public class DropboxConnection implements Connection {
   public void close() {
     client = null;
   }
-
+  private Logger logger = Logger.getLogger(DropboxConnection.class.getName());
   private DbxClientV2 client;
   private String accessToken;
   private String appKey;
