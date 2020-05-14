@@ -82,6 +82,7 @@ public class ProcessFileActivity extends BaseDropboxActivity {
   @Override
   public void execute(JitterbitActivity.ExecutionContext context) throws ActivityExecutionException {
     logger.info("Executing Activity: " + getName());
+    DropboxConnection connection = null;
     String folder = "";
     String path = "";
     DbxDownloader<FileMetadata> result;
@@ -97,7 +98,7 @@ public class ProcessFileActivity extends BaseDropboxActivity {
         path = folder + "/" + fileName;
       }
 
-      DropboxConnection connection = (DropboxConnection) context.getConnection();
+      connection = (DropboxConnection) context.getConnection();
       DbxClientV2 client = connection.getClient();
       result = client.files().download(path);
       result.download(context.getResponsePayload().getOutputStream());
@@ -110,8 +111,14 @@ public class ProcessFileActivity extends BaseDropboxActivity {
       try {
         context.getResponsePayload().getOutputStream().flush();
         context.getResponsePayload().getOutputStream().close();
+        if (connection != null) {
+          connection.close();
+        }
       } catch (Exception x) {
-        logger.warning(x.getMessage());
+        String message = "Getting exception while closing: " + x.getLocalizedMessage();
+        logger.severe(message);
+        x.printStackTrace();
+        throw new RuntimeException(message, x);
       }
     }
   }

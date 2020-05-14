@@ -86,22 +86,23 @@ public class PutFileActivity extends BaseDropboxActivity {
   @Override
   public void execute(ExecutionContext context) throws ActivityExecutionException {
     logger.info("Executing Activity: " +  getName());
-    String folder = "/";
-    String filename = null;
+    DropboxConnection connection = null;
     String dropboxPath = null;
+    String filename = null;
+    String folder = "/";
     PutFileResponse response = new PutFileResponse();
     try {
       folder = context.getFunctionParameters().get("folder");
       logger.info("Uploading to folder: " + folder);
       filename = context.getFunctionParameters().get("fileName");
       logger.info("Uploading to filename: " + filename);
-      DropboxConnection connection = (DropboxConnection) context.getConnection();
+      connection = (DropboxConnection) context.getConnection();
       DbxClientV2 client = connection.getClient();
 
       PutFileRequest req = DropboxUtils.unmarshall(PutFileRequest.class, context.getRequestPayload().getInputStream());
       dropboxPath = getPath(filename, folder, req);
       logger.info("Uploading file: " + dropboxPath);
-      // Uploads file
+      // Upload file
       FileMetadata metadata = client.files().uploadBuilder(dropboxPath)
           .withMute(req.isMute())
           .withAutorename(req.isAutorename())
@@ -128,8 +129,14 @@ public class PutFileActivity extends BaseDropboxActivity {
       try {
         context.getResponsePayload().getOutputStream().flush();
         context.getResponsePayload().getOutputStream().close();
+        if (connection != null) {
+          connection.close();
+        }
       } catch (Exception x) {
-        logger.warning(x.getMessage());
+        String message = "Getting exception while closing: " + x.getLocalizedMessage();
+        logger.severe(message);
+        x.printStackTrace();
+        throw new RuntimeException(message, x);
       }
     }
   }

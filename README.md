@@ -148,8 +148,15 @@ include attributes specific to the connector(s) within the `MANIFEST.MF` file. T
 registration process need to be included in the manifest, as described above. For additional details, check the
 [PACKAGING.md](PACKAGING.md).
 
-Skipping the details, and to directly build the Dropbox connector, run this command:
+Additionally, tests are run as part of the build. For the tests to run, you will need the Dropbox `app-key` and
+`access-token` keys that you obtained earlier. They must be defined in the build environment as the test uses those
+keys.
 
+Skipping the details, and to directly build the Dropbox connector, run these commands (after substituting in your
+values for the `APP_KEY` and `ACCESS_TOKEN` environment variables in this example):
+
+    $ export APP_KEY=<app-key>
+    $ export ACCESS_TOKEN=<access-token>
     $ mvn jaxb2:xjc compile install
 
 
