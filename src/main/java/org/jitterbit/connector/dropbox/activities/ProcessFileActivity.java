@@ -78,6 +78,7 @@ public class ProcessFileActivity extends BaseDropboxActivity {
    *
    * @param context the context for the activity
    * @throws ActivityExecutionException if there is an error while executing the activity
+   * @throws RuntimeException if there is an error while closing the activity
    */
   @Override
   public void execute(JitterbitActivity.ExecutionContext context) throws ActivityExecutionException {
