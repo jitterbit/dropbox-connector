@@ -76,14 +76,16 @@ public class GetFileActivity extends BaseDropboxActivity {
    * as part of the `context`.
    * @param context the context for the activity
    * @throws ActivityExecutionException if there is an error while executing the activity
+   * @throws RuntimeException if there is an error while closing the activity
    */
   @Override
   public void execute(ExecutionContext context) throws ActivityExecutionException {
     logger.info("Executing Activity: " + getName());
-    DropboxConnection connection = (DropboxConnection) context.getConnection();
+    DropboxConnection connection = null;
     String folder = context.getFunctionParameters().get("folder");
     String obj = context.getFunctionParameters().get("list-object");
     try {
+      connection = (DropboxConnection) context.getConnection();
       JsonElement json = new JsonParser().parse(obj);
       String filename = json.getAsJsonObject().getAsJsonPrimitive("name").getAsString();
       DbxClientV2 client = connection.getClient();
@@ -95,8 +97,17 @@ public class GetFileActivity extends BaseDropboxActivity {
       throw new ActivityExecutionException(Messages.DROPBOX_CODE06,
         Messages.getMessage(Messages.DROPBOX_CODE06_MSG, new Object[]{getName(), t.getLocalizedMessage()}), t);
     } finally {
-      if (connection != null) {
-        connection.close();
+      try {
+        context.getResponsePayload().getOutputStream().flush();
+        context.getResponsePayload().getOutputStream().close();
+        if (connection != null) {
+          connection.close();
+        }
+      } catch (Exception x) {
+        String message = "Getting exception while closing: " + x.getLocalizedMessage();
+        logger.severe(message);
+        x.printStackTrace();
+        throw new RuntimeException(message, x);
       }
     }
   }
