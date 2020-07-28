@@ -147,6 +147,10 @@ choose from.
   The Dropbox connector uses the [Dropbox Java SDK API](https://dropbox.github.io/dropbox-sdk-java/api-docs/v2.1.x/).
   Refer to the SDK documentation for information on the schema fields.
 
+- **Refresh:** Click the refresh icon ![Refresh icon](./assets/refresh-icon.png) or the word **Refresh** to
+  regenerate schemas from the endpoint. This action also regenerates the schema in other locations throughout
+  the project where the same schema is referenced, such as in an adjacent transformation.
+
 - **Back:** Click to return to the previous step and temporarily store the configuration.
 
 - **Finished:** Click to save the configuration for all steps and close the activity configuration.
