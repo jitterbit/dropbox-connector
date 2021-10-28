@@ -29,7 +29,8 @@ import org.jitterbit.connector.sdk.metadata.DiscoverableObject;
 import org.jitterbit.connector.sdk.metadata.DiscoverableObjectRequest;
 import org.jitterbit.connector.sdk.metadata.SchemaMetaData;
 import org.jitterbit.connector.sdk.metadata.SchemaMetaData.SchemaContentType;
-
+import org.jitterbit.connector.verbose.logging.dropbox.VerboseLogger;
+import org.json.JSONObject;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -164,6 +165,23 @@ public class ProcessFileActivity extends BaseDropboxActivity {
           fileName,
           selectedObject.schemaContentType);
       activitySchemaResponse.setResponseRootElement(QName.valueOf(rootName));
+    //Verbose Logging for Request and Response Schema
+      if (VerboseLogger.getLogger().isDebugEnabled()) {
+          JSONObject requestSchemaJson = new JSONObject();
+          requestSchemaJson.put("schemaName", activitySchemaResponse.getRequestSchema().getName());
+          requestSchemaJson.put("content", activitySchemaResponse.getRequestSchema().getContent());
+          requestSchemaJson.put("content-type", activitySchemaResponse.getRequestSchema().getSchemaContentType());
+          VerboseLogger.debug(ProcessFileActivity.class.getName(),
+              "getActivityRequestResponseMetadata", "requestSchema: "
+              + requestSchemaJson.toString());
+          JSONObject responseSchemaJson = new JSONObject();
+          responseSchemaJson.put("schemaName", activitySchemaResponse.getResponseSchema().getName());
+          responseSchemaJson.put("content", activitySchemaResponse.getResponseSchema().getContent());
+          responseSchemaJson.put("content-type", activitySchemaResponse.getResponseSchema().getSchemaContentType());
+          VerboseLogger.debug(ProcessFileActivity.class.getName(), 
+              "getActivityRequestResponseMetadata", "responseSchema: "
+              + responseSchemaJson.toString());
+        }
       return activitySchemaResponse;
     } catch (Exception x) {
       logger.log(java.util.logging.Level.SEVERE, x.getLocalizedMessage(), x);
@@ -199,6 +217,7 @@ public class ProcessFileActivity extends BaseDropboxActivity {
               .setName("myschema4.xsd")
               .setSchemaContentType(SchemaContentType.XSD)
               .setContent(loadResource(DropboxUtils.class.getClassLoader(), "support-xsds/myschema4.xsd")));
+    
     } catch (Exception x) {
       Logger.getLogger(ProcessFileActivity.class.getName()).severe(x.getLocalizedMessage());
     }

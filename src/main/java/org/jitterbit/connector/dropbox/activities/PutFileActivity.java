@@ -17,6 +17,8 @@ import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.files.FileMetadata;
 import com.dropbox.core.v2.files.ListFolderResult;
 import com.dropbox.core.v2.files.WriteMode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.jitterbit.connector.dropbox.DropboxConnection;
 import org.jitterbit.connector.dropbox.DropboxConstants;
 import org.jitterbit.connector.dropbox.DropboxUtils;
@@ -29,6 +31,8 @@ import org.jitterbit.connector.sdk.annotation.Activity;
 import org.jitterbit.connector.sdk.exceptions.ActivityExecutionException;
 import org.jitterbit.connector.sdk.metadata.ActivityFunctionParameters;
 import org.jitterbit.connector.sdk.metadata.ActivityRequestResponseMetaData;
+import org.jitterbit.connector.verbose.logging.dropbox.VerboseLogger;
+import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -101,6 +105,9 @@ public class PutFileActivity extends BaseDropboxActivity {
       DbxClientV2 client = connection.getClient();
 
       PutFileRequest req = DropboxUtils.unmarshall(PutFileRequest.class, context.getRequestPayload().getInputStream());
+      //Verbose Logger
+      VerboseLogger.debug(PutFileActivity.class.getName(), "execute",
+          new ObjectMapper().writer().withRootName("request").writeValueAsString(req));
       dropboxPath = getPath(filename, folder, req);
       logger.info("Uploading file: " + dropboxPath);
       // Upload file
@@ -112,14 +119,16 @@ public class PutFileActivity extends BaseDropboxActivity {
           .withClientModified(new Date())
           .start()
           .uploadAndFinish(new ByteArrayInputStream(req.getContent()));
-
+      
       response.setName(metadata.getName());
       response.setPathLower(metadata.getPathLower());
       response.setContentHash(metadata.getContentHash());
       response.setId(metadata.getId());
       response.setRev(metadata.getRev());
       response.setSize(BigInteger.valueOf(metadata.getSize()));
-
+    //Verbose Logger
+      VerboseLogger.debug(PutFileActivity.class.getName(), "execute",
+          new ObjectMapper().writer().withRootName("response").writeValueAsString(response));
       // Marshall the response to the response payload output stream
       DropboxUtils.marshall(PutFileResponse.class, response, context.getResponsePayload().getOutputStream());
     } catch (Throwable x) {
@@ -164,6 +173,21 @@ public class PutFileActivity extends BaseDropboxActivity {
       activitySchemaResponse
           .setRequestRootElement(new QName(PUT_FILE_NAMESPACE, PUT_FILE_REQ_ROOT))
           .setResponseRootElement(new QName(PUT_FILE_NAMESPACE, PUT_FILE_RSP_ROOT));
+    //Verbose Logging for Request and Response Schema
+      if (VerboseLogger.getLogger().isDebugEnabled()) {
+          JSONObject requestSchemaJson = new JSONObject();
+          requestSchemaJson.put("schemaName", activitySchemaResponse.getRequestSchema().getName());
+          requestSchemaJson.put("content", activitySchemaResponse.getRequestSchema().getContent());
+          requestSchemaJson.put("content-type", activitySchemaResponse.getRequestSchema().getSchemaContentType());
+          VerboseLogger.debug(PutFileActivity.class.getName(), "getActivityRequestResponseMetadata", "requestSchema: "
+              + requestSchemaJson.toString());
+          JSONObject responseSchemaJson = new JSONObject();
+          responseSchemaJson.put("schemaName", activitySchemaResponse.getResponseSchema().getName());
+          responseSchemaJson.put("content", activitySchemaResponse.getResponseSchema().getContent());
+          responseSchemaJson.put("content-type", activitySchemaResponse.getResponseSchema().getSchemaContentType());
+          VerboseLogger.debug(PutFileActivity.class.getName(), "getActivityRequestResponseMetadata", "responseSchema: "
+              + responseSchemaJson.toString());
+        }
       return activitySchemaResponse;
     } catch (Exception x) {
       logger.log(Level.SEVERE, x.getLocalizedMessage(), x);

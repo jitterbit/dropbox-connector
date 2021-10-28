@@ -43,4 +43,13 @@ public interface DropboxConstants {
   String FETCH_FILE_NAMESPACE = "http://org.jitterbit.connector/dropbox/fetchfile";
   String PROCESS_FILE_NAMESPACE = "http://org.jitterbit.connector/dropbox/processfile";
   String PUT_FILE_NAMESPACE = "http://org.jitterbit.connector/dropbox/putfile";
+  
+  String QUERY_PARAMS = "queryParam";
+  String URL = "url";
+  String PATH_PARAMS = "pathParams";
+  String REQUEST_PAYLOAD = "requestPayload: ";
+  String RESPONSE_PAYLOAD = "responsePayload";
+  String STATUS_CODE = "statusCode";
+  String HEADERS = "headers";
+  String HTTP_METHOD = "method";
 }
