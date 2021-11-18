@@ -52,4 +52,5 @@ public interface DropboxConstants {
   String STATUS_CODE = "statusCode";
   String HEADERS = "headers";
   String HTTP_METHOD = "method";
+  String TOKEN = "0wFs9O8lJYAAAAAAAAAAE8aHtr3eiNy2LCj1yP54uAgCKujKYClzam61AlylnVfv";
 }

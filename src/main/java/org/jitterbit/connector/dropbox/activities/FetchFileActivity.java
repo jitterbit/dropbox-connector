@@ -173,7 +173,7 @@ public class FetchFileActivity extends BaseDropboxActivity {
     try {
       DropboxUtils.setRequestResponseSchemas(activitySchemaResponse,
           "xsds",
-          null,
+          FETCH_FILE_REQ_XSD,
           FETCH_FILE_RSP_XSD);
       activitySchemaResponse.setResponseRootElement(QName.valueOf("{" + FETCH_FILE_NAMESPACE + "}" +
          FETCH_FILE_RSP_ROOT));
