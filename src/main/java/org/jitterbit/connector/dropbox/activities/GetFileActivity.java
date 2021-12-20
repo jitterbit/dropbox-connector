@@ -32,6 +32,8 @@ import org.jitterbit.connector.sdk.metadata.DiscoverableField;
 import org.jitterbit.connector.sdk.metadata.DiscoverableObject;
 import org.jitterbit.connector.sdk.metadata.DiscoverableObjectRequest;
 import org.jitterbit.connector.sdk.metadata.SchemaMetaData;
+import org.jitterbit.connector.verbose.logging.dropbox.VerboseLogger;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Iterator;
@@ -143,6 +145,21 @@ public class GetFileActivity extends BaseDropboxActivity {
           );
       activitySchemaResponse.setResponseRootElement(new QName(""));
       activitySchemaResponse.setResponseSchema(md);
+    //Verbose Logging for Request and Response Schema
+      if (VerboseLogger.getLogger().isDebugEnabled()) {
+          JSONObject requestSchemaJson = new JSONObject();
+          requestSchemaJson.put("schemaName", activitySchemaResponse.getRequestSchema().getName());
+          requestSchemaJson.put("content", activitySchemaResponse.getRequestSchema().getContent());
+          requestSchemaJson.put("content-type", activitySchemaResponse.getRequestSchema().getSchemaContentType());
+          VerboseLogger.debug(GetFileActivity.class.getName(), "getActivityRequestResponseMetadata", "requestSchema: "
+              + requestSchemaJson.toString());
+          JSONObject responseSchemaJson = new JSONObject();
+          responseSchemaJson.put("schemaName", activitySchemaResponse.getResponseSchema().getName());
+          responseSchemaJson.put("content", activitySchemaResponse.getResponseSchema().getContent());
+          responseSchemaJson.put("content-type", activitySchemaResponse.getResponseSchema().getSchemaContentType());
+          VerboseLogger.debug(GetFileActivity.class.getName(), "getActivityRequestResponseMetadata", "responseSchema: "
+              + responseSchemaJson.toString());
+        }
       return activitySchemaResponse;
     } catch (Exception x) {
       logger.log(java.util.logging.Level.SEVERE, x.getLocalizedMessage(), x);

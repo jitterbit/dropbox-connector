@@ -17,16 +17,18 @@ import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.files.ListFolderResult;
 import org.jitterbit.connector.sdk.Connection;
+import org.jitterbit.connector.verbose.logging.dropbox.VerboseLogger;
+import org.json.JSONObject;
 
 import java.util.Objects;
 import java.util.logging.Logger;
-
+    
 /**
  * Connection to a Dropbox endpoint. Uses the
  * <a href="https://dropbox.github.io/dropbox-sdk-java/api-docs/v2.1.x/"
  * target="_blank">Official Dropbox Java SDK 2.1.2 API</a>.
  */
-public class DropboxConnection implements Connection {
+public class DropboxConnection implements Connection, DropboxConstants {
 
   /**
    * Constructs a Dropbox connection using a Dropbox app key and access token.
@@ -53,10 +55,19 @@ public class DropboxConnection implements Connection {
       return;
     }
     try {
+      if (VerboseLogger.getLogger().isDebugEnabled()) {
+          JSONObject request = new JSONObject();
+          request.put(APP_KEY, appKey);
+          request.put(ACCESS_TOKEN, "********");
+          request.put(LOCALE, locale);
+          VerboseLogger.debug(DropboxConnection.class.getName(), "open", "Request: " + request.toString());
+      }
       DbxRequestConfig dbxConfig = new DbxRequestConfig(appKey, locale);
       client = new DbxClientV2(dbxConfig, accessToken);
       ListFolderResult results = client.files().listFolder("");
-      logger.info("Dropbox Connection successful -> app-key: " + appKey + ", access-token: " + accessToken);
+      VerboseLogger.debug(DropboxConnection.class.getName(), "open", "Response: " + results.toString());
+      logger.info("Dropbox Connection successful ");
+      
     } catch (Exception x) {
       x.printStackTrace();
       throw new ConnectionException(Messages.DROPBOX_CODE07,

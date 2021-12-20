@@ -31,10 +31,9 @@ import java.util.logging.Logger;
 /**
  * Tests for the Dropbox connector.
  */
-public class DropboxConnectorTestCase {
-
-  public static String accessToken = System.getenv("ACCESS_TOKEN");
-  public static String appKey = System.getenv("APP_KEY");
+public class DropboxConnectorTestCase implements DropboxConstants {
+  public static String accessToken = TOKEN;
+  public static String appKey = "abc";
 
   @org.junit.Before
   public void setUp() {
@@ -89,11 +88,12 @@ public class DropboxConnectorTestCase {
   public void testActivitySchemaResponseForFetchFilePositive() throws Exception {
     JitterbitActivity activity = new FetchFileActivity.FetchFileActivityFactory().createActivity();
     ActivityFunctionParameters asreq = new ActivityFunctionParameters();
-    Discoverable.DiscoverContextRequest<ActivityFunctionParameters> activitySchemaReq =
-        new MockConnectorEngine.MockDiscoverContextRequest<>(asreq, newEndpointParams());
+    Discoverable.DiscoverContextRequest<ActivityFunctionParameters> activitySchemaReq = 
+        new MockConnectorEngine.MockDiscoverContextRequest<>(
+        asreq, newEndpointParams());
 
     ActivityRequestResponseMetaData schemaRsp = activity.getActivityRequestResponseMetadata(activitySchemaReq);
-    Assert.assertNull(schemaRsp.getRequestSchema());
+    Assert.assertNotNull(schemaRsp.getRequestSchema());
     Assert.assertNotNull(schemaRsp.getResponseSchema());
     Assert.assertEquals(schemaRsp.getResponseSchema().getContent(),
         DropboxUtils.loadResource(null, "xsds/" + DropboxConnector.FETCH_FILE_RSP_XSD));
@@ -101,11 +101,11 @@ public class DropboxConnectorTestCase {
 
   @Test
   public void testActivitySchemaResponseForPutFilePositive() throws Exception {
-    JitterbitActivity activity =
-        new PutFileActivity.PutFileActivityFactory().createActivity();
+    JitterbitActivity activity = new PutFileActivity.PutFileActivityFactory().createActivity();
     ActivityFunctionParameters asreq = new ActivityFunctionParameters();
-    Discoverable.DiscoverContextRequest<ActivityFunctionParameters> activitySchemaReq =
-        new MockConnectorEngine.MockDiscoverContextRequest<>(asreq, newEndpointParams());
+    Discoverable.DiscoverContextRequest<ActivityFunctionParameters> activitySchemaReq = 
+        new MockConnectorEngine.MockDiscoverContextRequest<>(
+        asreq, newEndpointParams());
     ActivityRequestResponseMetaData schemaRsp = activity.getActivityRequestResponseMetadata(activitySchemaReq);
 
     Assert.assertNotNull(schemaRsp.getRequestSchema());
@@ -114,9 +114,8 @@ public class DropboxConnectorTestCase {
 
     Assert.assertNotNull(schemaRsp.getResponseSchema());
     Assert.assertEquals(schemaRsp.getResponseSchema().getContent(),
-        DropboxUtils.loadResource(null, "xsds/" +  DropboxConnector.PUT_FILE_RSP_XSD));
+        DropboxUtils.loadResource(null, "xsds/" + DropboxConnector.PUT_FILE_RSP_XSD));
   }
-
 
   public static Map<String, String> newEndpointParams() {
     Map<String, String> props = new HashMap<>();
@@ -129,8 +128,8 @@ public class DropboxConnectorTestCase {
     Map<String, String> props = new HashMap<>();
     props.put(DropboxConstants.ACCESS_TOKEN, accessToken);
     props.put(DropboxConstants.APP_KEY, appKey);
-    DropboxConnection connection =
-        (DropboxConnection) DropboxConnector.INSTANCE.getConnectionFactory().createConnection(props);
+    DropboxConnection connection = (DropboxConnection) DropboxConnector.INSTANCE.getConnectionFactory()
+        .createConnection(props);
     return connection;
   }
 

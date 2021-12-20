@@ -16,10 +16,13 @@ package org.jitterbit.connector.dropbox.activities;
 import com.dropbox.core.DbxDownloader;
 import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.files.FileMetadata;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.jitterbit.connector.dropbox.DropboxConnection;
 import org.jitterbit.connector.dropbox.DropboxConstants;
 import org.jitterbit.connector.dropbox.DropboxUtils;
 import org.jitterbit.connector.dropbox.Messages;
+import org.jitterbit.connector.dropbox.schema.FetchFileRequest;
 import org.jitterbit.connector.dropbox.schema.FetchFileResponse;
 import org.jitterbit.connector.sdk.Discoverable;
 import org.jitterbit.connector.sdk.JitterbitActivity;
@@ -28,6 +31,8 @@ import org.jitterbit.connector.sdk.exceptions.ActivityExecutionException;
 import org.jitterbit.connector.sdk.metadata.ActivityFunctionParameters;
 import org.jitterbit.connector.sdk.metadata.ActivityRequestResponseMetaData;
 import org.jitterbit.connector.sdk.util.Utils;
+import org.jitterbit.connector.verbose.logging.dropbox.VerboseLogger;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.math.BigInteger;
@@ -98,7 +103,11 @@ public class FetchFileActivity extends BaseDropboxActivity {
       logger.info("Fetching: " + path);
       connection = (DropboxConnection) context.getConnection();
       DbxClientV2 client = connection.getClient();
-
+      FetchFileRequest req = DropboxUtils.
+          unmarshall(FetchFileRequest.class, context.getRequestPayload().getInputStream());
+    //Verbose Logger
+      VerboseLogger.debug(FetchFileActivity.class.getName(), "execute",
+              new ObjectMapper().writer().withRootName("request").writeValueAsString(req));
       DbxDownloader<FileMetadata> result = client.files().download(path);
       FetchFileResponse opRsp = new FetchFileResponse();
 
@@ -120,6 +129,9 @@ public class FetchFileActivity extends BaseDropboxActivity {
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
       result.download(baos);
       opRsp.setContent(baos.toByteArray());
+      //Verbose Logger
+      VerboseLogger.debug(FetchFileActivity.class.getName(), "execute",
+              new ObjectMapper().writer().withRootName("response").writeValueAsString(opRsp));
 
       // Marshall the response to the response payload output stream
       DropboxUtils.marshall(FetchFileResponse.class, opRsp, context.getResponsePayload().getOutputStream());
@@ -161,10 +173,27 @@ public class FetchFileActivity extends BaseDropboxActivity {
     try {
       DropboxUtils.setRequestResponseSchemas(activitySchemaResponse,
           "xsds",
-          null,
+          FETCH_FILE_REQ_XSD,
           FETCH_FILE_RSP_XSD);
       activitySchemaResponse.setResponseRootElement(QName.valueOf("{" + FETCH_FILE_NAMESPACE + "}" +
          FETCH_FILE_RSP_ROOT));
+      //Verbose Logging for Request and Response Schema
+      if (VerboseLogger.getLogger().isDebugEnabled()) {
+          JSONObject requestSchemaJson = new JSONObject();
+          requestSchemaJson.put("schemaName", activitySchemaResponse.getRequestSchema().getName());
+          requestSchemaJson.put("content", activitySchemaResponse.getRequestSchema().getContent());
+          requestSchemaJson.put("content-type", activitySchemaResponse.getRequestSchema().getSchemaContentType());
+          VerboseLogger.debug(FetchFileActivity.class.getName(),
+              "getActivityRequestResponseMetadata", "requestSchema: "
+              + requestSchemaJson.toString());
+          JSONObject responseSchemaJson = new JSONObject();
+          responseSchemaJson.put("schemaName", activitySchemaResponse.getResponseSchema().getName());
+          responseSchemaJson.put("content", activitySchemaResponse.getResponseSchema().getContent());
+          responseSchemaJson.put("content-type", activitySchemaResponse.getResponseSchema().getSchemaContentType());
+          VerboseLogger.debug(FetchFileActivity.class.getName(),
+              "getActivityRequestResponseMetadata", "responseSchema: "
+              + responseSchemaJson.toString());
+        }
       return activitySchemaResponse;
     } catch (Exception x) {
       logger.log(Level.SEVERE, x.getLocalizedMessage(), x);
